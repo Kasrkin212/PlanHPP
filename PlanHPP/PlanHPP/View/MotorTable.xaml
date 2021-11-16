@@ -1,0 +1,204 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:local="clr-namespace:PlanHPP.ViewModels"
+             x:Class="PlanHPP.View.MotorTable">
+    <ContentPage.BindingContext>
+        <local:VMTurbineWorkshop/>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+
+        <Grid BackgroundColor="Black">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="180" />
+                <ColumnDefinition Width="100" />
+                <ColumnDefinition Width="100" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40" />
+                <RowDefinition Height="40" />
+                <RowDefinition Height="40" />
+                <RowDefinition Height="40" />
+                <RowDefinition Height="40" />
+                <RowDefinition Height="40" />
+                <RowDefinition Height="40" />
+                <RowDefinition Height="40" />
+                <RowDefinition Height="40" />
+                <RowDefinition Height="40" />
+                <RowDefinition Height="40" />
+                <RowDefinition Height="40" />
+                <RowDefinition Height="40" />
+                <RowDefinition Height="40" />
+                <RowDefinition Height="40" />
+                <RowDefinition Height="40" />
+                <RowDefinition Height="40" />
+                <RowDefinition Height="40" />
+                <RowDefinition Height="40" />
+                <RowDefinition Height="40" />
+                <RowDefinition Height="40" />
+            </Grid.RowDefinitions>
+            <Grid.Resources>
+                <ResourceDictionary>
+                    <Style x:Key="ButtonStyle" TargetType="Button">
+                        <Setter Property="Command" Value="{Binding ChangeCoordinatesMethod}"/>
+                        <Setter Property="HorizontalOptions" Value="StartAndExpand"/>
+                        <Setter Property="VerticalOptions" Value="StartAndExpand"/>
+                    </Style>
+                </ResourceDictionary>
+            </Grid.Resources>
+
+            <BoxView Grid.Column="0" Grid.Row="0" BackgroundColor="White" />
+            <Label x:Name="NameMotors" Text="Наименование двигателя"  VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="0" Grid.Row="0"/>
+
+            <BoxView Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2"  BackgroundColor="White" />
+            <Label x:Name="TG1" Text="ТГ-1" VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2"/>
+
+
+            <BoxView Grid.Column="2" Grid.Row="1" BackgroundColor="White" />
+            <Label x:Name="B" Text="Б" VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="2" Grid.Row="1"/>
+
+
+
+            <BoxView Grid.Column="0" Grid.Row="1" Grid.RowSpan="2" BackgroundColor="White" />
+            <Label x:Name="KNT" Text="КНТ" VerticalOptions="Center" 
+                   HorizontalOptions="Center" Grid.Column="0" Grid.Row="1" Grid.RowSpan="2"/>
+
+            <BoxView Grid.Column="1" Grid.Row="1" BackgroundColor="White" />
+            <Button x:Name="KNTA" Style="{StaticResource ButtonStyle}" CommandParameter="14" Clicked="GoBack"  
+                    Text="А" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Grid.Column="1" Grid.Row="1"/>
+            <BoxView Grid.Column="1" Grid.Row="2" BackgroundColor="White" />
+            <Label x:Name="KNTAS" Text="1-3Б" VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="1" Grid.Row="2"/>
+
+            <BoxView Grid.Column="2" Grid.Row="1" BackgroundColor="White" />
+            <Button x:Name="KNTB" Style="{StaticResource ButtonStyle}" CommandParameter="15" Clicked="GoBack" 
+                    Text="Б" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Grid.Column="2" Grid.Row="1"/>
+            <BoxView Grid.Column="2" Grid.Row="2" BackgroundColor="White" />
+            <Label x:Name="KNTBS" Text="2-28Б" VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="2" Grid.Row="2"/>
+
+
+            <BoxView Grid.Column="0" Grid.Row="3" Grid.RowSpan="2" BackgroundColor="White" />
+            <Label x:Name="SlivMotors" Text="Сливные насосы" VerticalOptions="Center" 
+                   HorizontalOptions="Center" Grid.Column="0" Grid.Row="3" Grid.RowSpan="2"/>
+
+            <BoxView Grid.Column="1" Grid.Row="3" BackgroundColor="White" />
+            <Button x:Name="SlivMotorsA" Style="{StaticResource ButtonStyle}" CommandParameter="16" Clicked="GoBack"  
+                    Text="А" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Grid.Column="1" Grid.Row="3"/>
+            <BoxView Grid.Column="1" Grid.Row="4" BackgroundColor="White" />
+            <Label x:Name="SlivMotorsAS" Text="1-7А" VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="1" Grid.Row="4"/>
+
+            <BoxView Grid.Column="2" Grid.Row="3" BackgroundColor="White" />
+            <Button x:Name="SlivMotorsB" Style="{StaticResource ButtonStyle}" CommandParameter="17" Clicked="GoBack" 
+                    Text="Б" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Grid.Column="2" Grid.Row="3"/>
+            <BoxView Grid.Column="2" Grid.Row="4" BackgroundColor="White" />
+            <Label x:Name="SlivMotorsBS" Text="1-14А" VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="2" Grid.Row="4"/>
+
+
+            <BoxView Grid.Column="0" Grid.RowSpan="2" BackgroundColor="White" 
+                     Grid.Row="5"/>
+            <Label x:Name="AMN" VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="0" Grid.RowSpan="2"
+                     Text="Аварийные маслонасосы"  
+                     Grid.Row="5" />
+            <BoxView Grid.Column="1" 
+                     Grid.Row="5" BackgroundColor="White" />
+            <Button x:Name="AMNP" Style="{StaticResource ButtonStyle}" CommandParameter="7" Clicked="GoBack"  
+                     Text="~" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Grid.Column="1" 
+                     Grid.Row="5"/>
+            <BoxView Grid.Column="1" Grid.Row="6" BackgroundColor="White" />
+            <Label x:Name="AMNPS" 
+                     Text="Сб. ТГ-1" VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="1" 
+                     Grid.Row="6"/>
+            <BoxView Grid.Column="2" Grid.Row="5" BackgroundColor="White" />
+            <Button x:Name="AMNC" Style="{StaticResource ButtonStyle}" CommandParameter="6" Clicked="GoBack" 
+                     Text="=" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Grid.Column="2" 
+                     Grid.Row="5"/>
+            <BoxView Grid.Column="2" 
+                     Grid.Row="6" BackgroundColor="White" />
+            <Label x:Name="AMNCS" 
+                     Text="ГЩУ, п.198" VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="2" 
+                     Grid.Row="6"/>
+
+
+
+            <BoxView Grid.Column="0" 
+                     Grid.Row="7" Grid.RowSpan="2" BackgroundColor="White" />
+            <Label x:Name="KNB" Text="КНБ" VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="0" 
+                     Grid.Row="7" Grid.RowSpan="2"/>
+            <BoxView Grid.Column="1" 
+                     Grid.Row="7" BackgroundColor="White" />
+            <Button x:Name="KNBA" Style="{StaticResource ButtonStyle}" CommandParameter="8" Clicked="GoBack"  
+                     Text="А" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Grid.Column="1" 
+                     Grid.Row="7"/>
+            <BoxView Grid.Column="1" Grid.Row="8" BackgroundColor="White" />
+            <Label x:Name="KNBAS" 
+                     Text="1-7Б" VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="1" 
+                     Grid.Row="8"/>
+            <BoxView Grid.Column="2" Grid.Row="7" BackgroundColor="White" />
+            <Button x:Name="KNBB" Style="{StaticResource ButtonStyle}" CommandParameter="9" Clicked="GoBack" 
+                     Text="Б" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Grid.Column="2" 
+                     Grid.Row="7"/>
+            <BoxView Grid.Column="2" 
+                     Grid.Row="8" BackgroundColor="White" />
+            <Label x:Name="KNBBS" 
+                     Text="1-14Б" VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="2" 
+                     Grid.Row="8"/>
+
+
+            <BoxView Grid.Column="0" Grid.RowSpan="2" BackgroundColor="White" 
+                     Grid.Row="9"/>
+            <Label x:Name="SN" VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="0" Grid.RowSpan="2"
+                     Text="Сетевые насосы"  
+                     Grid.Row="9" />
+
+            <BoxView Grid.Column="1" BackgroundColor="White" 
+                     Grid.Row="9"/>
+            <Button x:Name="SN1" Style="{StaticResource ButtonStyle}" CommandParameter="10" Clicked="GoBack" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Grid.Column="1"
+                     Text="1"  
+                     Grid.Row="9"/>
+            <BoxView Grid.Column="1" BackgroundColor="White" 
+                     Grid.Row="10"/>
+            <Label x:Name="SN1S" VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="1"
+                     Text="I-608"  
+                     Grid.Row="10"/>
+
+            <BoxView Grid.Column="2" Grid.Row="9" BackgroundColor="White" />
+            <Button x:Name="SN2" Style="{StaticResource ButtonStyle}" CommandParameter="11" Clicked="GoBack" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Grid.Column="2"
+                     Text="2"  
+                     Grid.Row="9"/>
+            <BoxView Grid.Column="2" BackgroundColor="White" 
+                     Grid.Row="10"/>
+            <Label x:Name="SN2S" VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="2" 
+                     Text="II-633" 
+                     Grid.Row="10"/>
+
+
+            <BoxView Grid.Column="0" Grid.RowSpan="2" BackgroundColor="White" 
+                     Grid.Row="11"/>
+            <Label x:Name="CN" VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="0" Grid.RowSpan="2"
+                     Text="Циркуляционные насосы"  
+                     Grid.Row="11" />
+
+            <BoxView Grid.Column="1" BackgroundColor="White" 
+                     Grid.Row="11"/>
+            <Button x:Name="CN1A" Style="{StaticResource ButtonStyle}" CommandParameter="12" Clicked="GoBack" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Grid.Column="1"
+                     Text="1"  
+                     Grid.Row="11"/>
+            <BoxView Grid.Column="1" BackgroundColor="White" 
+                     Grid.Row="12"/>
+            <Label x:Name="CN1AS" VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="1"
+                     Text="I-608"  
+                     Grid.Row="12"/>
+
+            <BoxView Grid.Column="2" 
+                     Grid.Row="11" BackgroundColor="White" />
+            <Button x:Name="CN1B" Style="{StaticResource ButtonStyle}" CommandParameter="13" Clicked="GoBack" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Grid.Column="2"
+                     Text="2"  
+                     Grid.Row="11"/>
+            <BoxView Grid.Column="2" BackgroundColor="White" 
+                     Grid.Row="12"/>
+            <Label x:Name="CN1BS" VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="2" 
+                     Text="II-633" 
+                     Grid.Row="12"/>
+
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
