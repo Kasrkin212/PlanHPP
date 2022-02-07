@@ -1,4 +1,6 @@
-﻿using System;
+﻿
+using System;
+using System.ComponentModel;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 
@@ -6,19 +8,19 @@ using Xamarin.Forms.Internals;
 namespace PlanHPP.Gestures
 {
 
-    public class TableGestureContainer : ContentView
+    public class TableGestureContainer : ContentView, INotifyPropertyChanged
     {
         private double _startScale, _currentScale;
         private double _startX, _startY;
         private double _xOffset, _yOffset;
         double maxTranslationY;
         double maxTranslationX;
-
         public double MinScale { get; set; } = 1;
         public double MaxScale { get; set; } = 4;
 
         public TableGestureContainer()
         {
+            
             var tap = new TapGestureRecognizer { NumberOfTapsRequired = 2 };
             tap.Tapped += OnTapped;
             GestureRecognizers.Add(tap);
@@ -30,6 +32,7 @@ namespace PlanHPP.Gestures
             var pan = new PanGestureRecognizer();
             pan.PanUpdated += OnPanUpdated;
             GestureRecognizers.Add(pan);
+
         }
 
         protected override void OnSizeAllocated(double width, double height)
@@ -101,8 +104,6 @@ namespace PlanHPP.Gestures
                     break;
 
                 case GestureStatus.Running:
-                    maxTranslationX = Content.Scale * Content.Width - Content.Width;
-
                     if (Content.Scale == 1)
                     {
                         maxTranslationX = Content.Scale * (Content.Width - App.ScreenWidth);
@@ -119,13 +120,13 @@ namespace PlanHPP.Gestures
 
                     if (Content.Scale == 1)
                     {
-                        maxTranslationY = Content.Scale * (Content.Height - App.ScreenHeight);
+                        maxTranslationY = Content.Scale * (Content.Height - App.ScreenHeight / 2);
                         Content.TranslationY = Math.Min(0, Math.Max(-maxTranslationY, _yOffset + e.TotalY - _startY));
                     }
 
                     else
                     {
-                        maxTranslationY = Content.Scale * Content.Height - App.ScreenHeight;
+                        maxTranslationY = Content.Scale * Content.Height - App.ScreenHeight / 2;
                         Content.TranslationY = Math.Min(0, Math.Max(-maxTranslationY, _yOffset + e.TotalY - _startY));
                     }
 
@@ -170,8 +171,8 @@ namespace PlanHPP.Gestures
             var targetX = _xOffset - (originX * Content.Width) * (_currentScale - _startScale);
             var targetY = _yOffset - (originY * Content.Height) * (_currentScale - _startScale);
 
-            Content.TranslationX = targetX.Clamp(-Content.Width * (_currentScale - 1), 0);
-            Content.TranslationY = targetY.Clamp(-Content.Height * (_currentScale - 1), 0);
+            Content.TranslationX = targetX.Clamp(-Content.Width * _currentScale, 0);
+            Content.TranslationY = targetY.Clamp(-Content.Height * _currentScale, 0);
 
             Content.Scale = _currentScale;
         }
@@ -181,8 +182,7 @@ namespace PlanHPP.Gestures
             _xOffset = Content.TranslationX;
             _yOffset = Content.TranslationY;
         }
-
-
+        
     }
 
 }

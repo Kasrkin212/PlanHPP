@@ -12,6 +12,8 @@ namespace PlanHPP.Droid
     {
         protected override void OnCreate(Bundle savedInstanceState)
         {
+            App.ScreenWidth = Resources.Configuration.ScreenWidthDp;
+            App.ScreenHeight = Resources.Configuration.ScreenHeightDp;
             base.OnCreate(savedInstanceState);
 
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);

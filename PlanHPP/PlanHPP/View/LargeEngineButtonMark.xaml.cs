@@ -1,19 +1,20 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace PlanHPP.View
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class MotorTable : ContentPage
+    public partial class LargeEngineButtonMark : ContentView
     {
-        public MotorTable()
+        public LargeEngineButtonMark()
         {
             InitializeComponent();
-        }
-        void GoBack(object sender, EventArgs args)
-        {
-            
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PlanHPP.View;
+using System;
 using System.ComponentModel;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
@@ -179,13 +180,7 @@ namespace PlanHPP.Gestures
             _xOffset = Content.TranslationX;
             _yOffset = Content.TranslationY;
         }
-        public void ChangeCoordinates(double X, double Y)
-        {
-            Content.TranslationX = X;
-            Content.TranslationY = Y;
-
-
-        }
+        
 
 
 

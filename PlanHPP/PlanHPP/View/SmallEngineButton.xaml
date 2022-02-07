@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PlanHPP.View.SmallEngineButton">
+  <ContentView.Content>
+        <RelativeLayout>
+            <RelativeLayout.Resources>
+                <ResourceDictionary>
+                    <Style x:Key="ButtonStyleLittle" TargetType="ImageButton">
+                        <Setter Property="Source" Value="ElectroMotor.jpg" />
+                        <Setter Property="RelativeLayout.WidthConstraint" Value="{ConstraintExpression Type=RelativeToView, ElementName=ShemaToTGOne, Property=Width, Factor=0.04}" />
+                        <Setter Property="RelativeLayout.HeightConstraint" Value="{ConstraintExpression Type=RelativeToView, ElementName=ShemaToTGOne, Property=Height, Factor=0.045}" />
+                        <Setter Property="Command" Value="{Binding ChangeLableMethod}" />
+
+                        <Setter Property="VisualStateManager.VisualStateGroups">
+                            <VisualStateGroupList>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal">
+                                        <VisualState.Setters>
+                                            <Setter Property="Scale"
+                                                        Value="1" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                    <VisualState x:Name="Pressed">
+                                        <VisualState.Setters>
+                                            <Setter Property="Scale"
+                                                        Value="0.8" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateGroupList>
+                        </Setter>
+                    </Style>
+                </ResourceDictionary>
+            </RelativeLayout.Resources>
+            <ImageButton x:Name="SmallEngine" x:FieldModifier="public" Style="{StaticResource ButtonStyleLittle}"/>
+        </RelativeLayout>
+  </ContentView.Content>
+</ContentView>

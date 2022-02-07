@@ -9,6 +9,7 @@ using Xamarin.Forms;
 using PlanHPP.View;
 using Xamarin.Essentials;
 using System.Runtime.CompilerServices;
+using PlanHPP.Gestures;
 
 namespace PlanHPP.ViewModels
 {
@@ -16,22 +17,18 @@ namespace PlanHPP.ViewModels
 
     public class VMTurbineWorkshop : INotifyPropertyChanged
     {
-        public string _ViewName = "";
-        public string _ViewSwitch = "";
+        public string _ViewName;
+        public string _ViewSwitch;
         public int _ViewIndicator = 0;
-        public double _XTranslation = 0;
-        public double _YTranslation = 0;
+        public double _XTranslation;
+        public double _YTranslation;
         public double _Scale = 0;
         public double DisplayX = (double)DeviceDisplay.MainDisplayInfo.Width / (double)DeviceDisplay.MainDisplayInfo.Density;
         public double DisplayY = (double)DeviceDisplay.MainDisplayInfo.Height / 2 / (double)DeviceDisplay.MainDisplayInfo.Density;
-
-
-
-
-
-
+        public WorkshopGestureContainer _PTZCC = new WorkshopGestureContainer();
         public ICommand ChangeLableMethod { set; get; }
         public ICommand ChangeCoordinatesMethod { set; get; }
+        public ICommand AppearCommand { set; get; }
         public Motor Motor { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -48,9 +45,6 @@ namespace PlanHPP.ViewModels
                 OnPropertyChanged(nameof(ViewName));
             }
         }
-
-
-
         public string ViewSwitch
         {
             get
@@ -116,10 +110,31 @@ namespace PlanHPP.ViewModels
                 OnPropertyChanged(nameof(Scale));
             }
         }
+        
+        public WorkShopView RTLT = new WorkShopView();
+        public WorkshopGestureContainer PTZCC
+        {
+            get
+            {
+                return _PTZCC;
+            }
+            set
+            {
+                _PTZCC = value;
+                OnPropertyChanged(nameof(PTZCC));
+            }
+        }
+
+
+
 
         public VMTurbineWorkshop()
         {
 
+
+            PTZCC.Content = RTLT;
+
+            AppearCommand = new Command(AppearVoid);
 
 
             List<Motor> motors = new List<Motor>();
@@ -132,38 +147,39 @@ namespace PlanHPP.ViewModels
                 var selectedMotors = from motor in motors
                                      where motor.ID == Key
                                      select motor;
+                
                 foreach (Motor motor in selectedMotors)
                 {
-                    TurbineWorkshop.LableName.Text = motor.Name;
-                    TurbineWorkshop.LableSwitch.Text = motor.Switch;
-                    TurbineWorkshop.Indicator.Scale = motor.Indicator;
+                    ViewName = motor.Name;
+                    ViewSwitch = motor.Switch;
+                    ViewIndicator = motor.Indicator;
 
-                    TurbineWorkshop.ButtonPressedLittle.TranslationX = TurbineWorkshop.PTZC.Width * motor.X;
-                    TurbineWorkshop.ButtonPressedLittle.TranslationY = TurbineWorkshop.PTZC.Height * motor.Y;
+                    RTLT.SmallMark.TranslationX = PTZCC.Width * motor.X;
+                    RTLT.SmallMark.TranslationY = PTZCC.Height * motor.Y;
 
-                    TurbineWorkshop.ButtonPressedMiddle.TranslationX = TurbineWorkshop.PTZC.Width * motor.X;
-                    TurbineWorkshop.ButtonPressedMiddle.TranslationY = TurbineWorkshop.PTZC.Height * motor.Y;
+                    RTLT.MiddleMark.TranslationX = PTZCC.Width * motor.X;
+                    RTLT.MiddleMark.TranslationY = PTZCC.Height * motor.Y;
 
-                    TurbineWorkshop.ButtonPressedLarge.TranslationX = TurbineWorkshop.PTZC.Width * motor.X;
-                    TurbineWorkshop.ButtonPressedLarge.TranslationY = TurbineWorkshop.PTZC.Height * motor.Y;
-
+                    RTLT.LargeMark.TranslationX = PTZCC.Width * motor.X;
+                    RTLT.LargeMark.TranslationY = PTZCC.Height * motor.Y;
+                  
                     if (motor.ID == 3)
                     {
-                        TurbineWorkshop.ButtonPressedLittle.Scale = 0;
-                        TurbineWorkshop.ButtonPressedMiddle.Scale = 0;
-                        TurbineWorkshop.ButtonPressedLarge.Scale = 1;
+                        RTLT.SmallMark.Scale = 0;
+                        RTLT.MiddleMark.Scale = 0;
+                        RTLT.LargeMark.Scale = 1;
                     }
                     else if (motor.ID == 10 || motor.ID == 11 || motor.ID == 12 || motor.ID == 13)
                     {
-                        TurbineWorkshop.ButtonPressedLittle.Scale = 0;
-                        TurbineWorkshop.ButtonPressedMiddle.Scale = 1;
-                        TurbineWorkshop.ButtonPressedLarge.Scale = 0;
+                        RTLT.SmallMark.Scale = 0;
+                        RTLT.MiddleMark.Scale = 1;
+                        RTLT.LargeMark.Scale = 0;
                     }
                     else
                     {
-                        TurbineWorkshop.ButtonPressedLittle.Scale = 1;
-                        TurbineWorkshop.ButtonPressedMiddle.Scale = 0;
-                        TurbineWorkshop.ButtonPressedLarge.Scale = 0;
+                        RTLT.SmallMark.Scale = 1;
+                        RTLT.MiddleMark.Scale = 0;
+                        RTLT.LargeMark.Scale = 0;
                     }
 
 
@@ -176,83 +192,83 @@ namespace PlanHPP.ViewModels
             ChangeCoordinatesMethod = new Command<string>((key) =>
             {
 
-                int Key = Int32.Parse(key);
+                Test.KKay = Int32.Parse(key);
                 var selectedMotors = from motor in Cmotors
-                                     where motor.ID == Key
+                                     where motor.ID == Test.KKay
                                      select motor;
 
                 foreach (Motor motor in selectedMotors)
                 {
 
-                    TurbineWorkshop.LableName.Text = motor.Name;
-                    TurbineWorkshop.LableSwitch.Text = motor.Switch;
-                    TurbineWorkshop.Indicator.Scale = motor.Indicator;
-                    TurbineWorkshop.PTZC.Content.Scale = 1;
-
-
-                    if ((motor.X * TurbineWorkshop.PTZC.Width) < DisplayX / 2)
+                    ViewName = motor.Name;
+                    ViewSwitch = motor.Switch;
+                    ViewIndicator = motor.Indicator;
+                    PTZCC.Content.Scale = 1;
+                  
+                  
+                    if ((motor.X * PTZCC.Width) < DisplayX / 2)
                     {
-                        TurbineWorkshop.PTZC.Content.TranslationX = 0;
+                        PTZCC.Content.TranslationX = 0;
                         XTranslation = 0;
-
-
+                  
+                  
                     }
-                    else if ((motor.X * TurbineWorkshop.PTZC.Width) < (TurbineWorkshop.PTZC.Width - DisplayX / 2))
+                    else if ((motor.X * PTZCC.Width) < (PTZCC.Width - DisplayX / 2))
                     {
-                        TurbineWorkshop.PTZC.Content.TranslationX = -((motor.X * TurbineWorkshop.PTZC.Width) - DisplayX / 2);
-                        XTranslation = -((motor.X * TurbineWorkshop.PTZC.Width) - DisplayX / 2);
+                        PTZCC.Content.TranslationX = -((motor.X * PTZCC.Width) - DisplayX / 2);
+                        XTranslation = -((motor.X * PTZCC.Width) - DisplayX / 2);
                     }
-                    if ((motor.X * TurbineWorkshop.PTZC.Width) > (TurbineWorkshop.PTZC.Width - DisplayX / 2))
+                    if ((motor.X * PTZCC.Width) > (PTZCC.Width - DisplayX / 2))
                     {
-                        TurbineWorkshop.PTZC.Content.TranslationX = -(TurbineWorkshop.PTZC.Width - DisplayX);
-                        XTranslation = -(TurbineWorkshop.PTZC.Width - DisplayX);
+                        PTZCC.Content.TranslationX = -(PTZCC.Width - DisplayX);
+                        XTranslation = -(PTZCC.Width - DisplayX);
                     }
-
-
-
-
-                    if ((motor.Y * TurbineWorkshop.PTZC.Height) < DisplayY / 2)
+                  
+                  
+                  
+                  
+                    if ((motor.Y * PTZCC.Height) < DisplayY / 2)
                     {
-                        TurbineWorkshop.PTZC.Content.TranslationY = 0;
+                        PTZCC.Content.TranslationY = 0;
                         YTranslation = 0;
                     }
-                    else if ((motor.Y * TurbineWorkshop.PTZC.Height) < (TurbineWorkshop.PTZC.Height - DisplayY / 2))
+                    else if ((motor.Y * PTZCC.Height) < (PTZCC.Height - DisplayY / 2))
                     {
-                        TurbineWorkshop.PTZC.Content.TranslationY = -((motor.Y * TurbineWorkshop.PTZC.Height) - DisplayY / 2);
-                        YTranslation = -((motor.Y * TurbineWorkshop.PTZC.Height) - DisplayY / 2);
+                        PTZCC.Content.TranslationY = -((motor.Y * PTZCC.Height) - DisplayY / 2);
+                        YTranslation = -((motor.Y * PTZCC.Height) - DisplayY / 2);
                     }
-                    if ((motor.Y * TurbineWorkshop.PTZC.Height) > (TurbineWorkshop.PTZC.Height - DisplayY / 2))
+                    if ((motor.Y * PTZCC.Height) > (PTZCC.Height - DisplayY / 2))
                     {
-                        TurbineWorkshop.PTZC.Content.TranslationY = -(TurbineWorkshop.PTZC.Height - DisplayY);
-                        YTranslation = -(TurbineWorkshop.PTZC.Height - DisplayY);
+                        PTZCC.Content.TranslationY = -(PTZCC.Height - DisplayY);
+                        YTranslation = -(PTZCC.Height - DisplayY);
                     }
 
-                    TurbineWorkshop.ButtonPressedLittle.TranslationX = TurbineWorkshop.PTZC.Width * motor.X;
-                    TurbineWorkshop.ButtonPressedLittle.TranslationY = TurbineWorkshop.PTZC.Height * motor.Y;
+                    RTLT.SmallMark.TranslationX = PTZCC.Width * motor.X;
+                    RTLT.SmallMark.TranslationY = PTZCC.Height * motor.Y;
 
-                    TurbineWorkshop.ButtonPressedMiddle.TranslationX = TurbineWorkshop.PTZC.Width * motor.X;
-                    TurbineWorkshop.ButtonPressedMiddle.TranslationY = TurbineWorkshop.PTZC.Height * motor.Y;
+                    RTLT.MiddleMark.TranslationX = PTZCC.Width * motor.X;
+                    RTLT.MiddleMark.TranslationY = PTZCC.Height * motor.Y;
 
-                    TurbineWorkshop.ButtonPressedLarge.TranslationX = TurbineWorkshop.PTZC.Width * motor.X;
-                    TurbineWorkshop.ButtonPressedLarge.TranslationY = TurbineWorkshop.PTZC.Height * motor.Y;
-
+                    RTLT.LargeMark.TranslationX = PTZCC.Width * motor.X;
+                    RTLT.LargeMark.TranslationY = PTZCC.Height * motor.Y;
+                  
                     if (motor.ID == 3)
                     {
-                        TurbineWorkshop.ButtonPressedLittle.Scale = 0;
-                        TurbineWorkshop.ButtonPressedMiddle.Scale = 0;
-                        TurbineWorkshop.ButtonPressedLarge.Scale = 1;
+                        RTLT.SmallMark.Scale = 0;
+                        RTLT.MiddleMark.Scale = 0;
+                        RTLT.LargeMark.Scale = 1;
                     }
                     else if (motor.ID == 10 || motor.ID == 11 || motor.ID == 12 || motor.ID == 13)
                     {
-                        TurbineWorkshop.ButtonPressedLittle.Scale = 0;
-                        TurbineWorkshop.ButtonPressedMiddle.Scale = 1;
-                        TurbineWorkshop.ButtonPressedLarge.Scale = 0;
+                        RTLT.SmallMark.Scale = 0;
+                        RTLT.MiddleMark.Scale = 1;
+                        RTLT.LargeMark.Scale = 0;
                     }
                     else
                     {
-                        TurbineWorkshop.ButtonPressedLittle.Scale = 1;
-                        TurbineWorkshop.ButtonPressedMiddle.Scale = 0;
-                        TurbineWorkshop.ButtonPressedLarge.Scale = 0;
+                        RTLT.SmallMark.Scale = 1;
+                        RTLT.MiddleMark.Scale = 0;
+                        RTLT.LargeMark.Scale = 0;
                     }
 
 
@@ -260,6 +276,15 @@ namespace PlanHPP.ViewModels
                 }
 
             });
+
+        }
+        public void AppearVoid()
+        {
+            
+            ViewName = Convert.ToString(XTranslation);
+            PTZCC.Content.TranslationX = -100;
+            PTZCC.Content.TranslationY = -100;
+            
 
         }
 
