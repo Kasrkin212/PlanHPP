@@ -17,20 +17,43 @@ namespace PlanHPP.View
         public Image SmallMark = new Image();
         public Image MiddleMark = new Image();
         public Image LargeMark = new Image();
-
         int Go = 0;
-        Image Shema = new Image { Source = "ShemaToTGOneTested.jpg" };
+        Image Shema = new Image();
+        
         public WorkShopView()
         {
             InitializeComponent();
-            DownloadView();
+            DownloadViews();
         }
-        void DownloadView()
+        void DownloadViews()
         {
-            ClickMake();
+            MakeMap();
+            MakeImageButton();
             MakeMark();
         }
-        void ClickMake()
+        void MakeMap()
+        {
+            Shema = new Image { Source = "ShemaToTGOneTested.jpg" }; // сюда будет приходить изображение
+            Shema.Aspect = Aspect.AspectFit;
+            Shema.HorizontalOptions = LayoutOptions.Fill;
+            Shema.VerticalOptions = LayoutOptions.Fill;
+            
+            RTLT.Children.Add(Shema,
+            Constraint.RelativeToParent((parent) =>
+            {
+                return 0;
+            }),
+            Constraint.RelativeToParent((parent) =>
+            {
+                return 0;
+            }),
+            Constraint.RelativeToParent((parent) =>
+            {
+                return parent.Width * 1;  
+            })
+        );
+        }
+        void MakeImageButton()
         {
             List<Motor> motors;
             //motors = await App.TodoManager.GetTasksAsync();
@@ -48,22 +71,22 @@ namespace PlanHPP.View
 
                 RTLT.Children.Add(SmallEngine,
 
-                Constraint.RelativeToView(ShemaToTGOne, (parent, view) =>
+                Constraint.RelativeToView(Shema, (parent, view) =>
                 {
-                    return ShemaToTGOne.X + ShemaToTGOne.Width * motor.X;    // установка координаты X
+                    return Shema.X + Shema.Width * motor.X;    // установка координаты X
                 }),
 
-                Constraint.RelativeToView(ShemaToTGOne, (parent, view) =>
+                Constraint.RelativeToView(Shema, (parent, view) =>
                 {
-                    return ShemaToTGOne.Y + ShemaToTGOne.Height * motor.Y;    // установка координаты Y
+                    return Shema.Y + Shema.Height * motor.Y;    // установка координаты Y
                 }),
-                Constraint.RelativeToView(ShemaToTGOne, (parent, view) =>
+                Constraint.RelativeToView(Shema, (parent, view) =>
                 {
-                    return ShemaToTGOne.Width * 0.04;    // установка координаты X
+                    return Shema.Width * 0.04;    // установка координаты X
                 }),
-                Constraint.RelativeToView(ShemaToTGOne, (parent, view) =>
+                Constraint.RelativeToView(Shema, (parent, view) =>
                 {
-                    return ShemaToTGOne.Height * 0.045;    // установка координаты Y
+                    return Shema.Height * 0.045;    // установка координаты Y
                 }));
 
                 
@@ -84,60 +107,60 @@ namespace PlanHPP.View
 
             RTLT.Children.Add(SmallMark,
 
-                Constraint.RelativeToView(ShemaToTGOne, (parent, view) =>
+                Constraint.RelativeToView(Shema, (parent, view) =>
                 {
                     return 0;    // установка координаты X
                 }),
 
-                Constraint.RelativeToView(ShemaToTGOne, (parent, view) =>
+                Constraint.RelativeToView(Shema, (parent, view) =>
                 {
                     return 0;    // установка координаты Y
                 }),
-                Constraint.RelativeToView(ShemaToTGOne, (parent, view) =>
+                Constraint.RelativeToView(Shema, (parent, view) =>
                 {
-                    return ShemaToTGOne.Width * 0.04;    // установка координаты X
+                    return Shema.Width * 0.04;    // установка координаты X
                 }),
-                Constraint.RelativeToView(ShemaToTGOne, (parent, view) =>
+                Constraint.RelativeToView(Shema, (parent, view) =>
                 {
-                    return ShemaToTGOne.Height * 0.045;    // установка координаты Y
+                    return Shema.Height * 0.045;    // установка координаты Y
                 }));
             RTLT.Children.Add(MiddleMark,
 
-                Constraint.RelativeToView(ShemaToTGOne, (parent, view) =>
+                Constraint.RelativeToView(Shema, (parent, view) =>
                 {
                     return 0;    // установка координаты X
                 }),
 
-                Constraint.RelativeToView(ShemaToTGOne, (parent, view) =>
+                Constraint.RelativeToView(Shema, (parent, view) =>
                 {
                     return 0;    // установка координаты Y
                 }),
-                Constraint.RelativeToView(ShemaToTGOne, (parent, view) =>
+                Constraint.RelativeToView(Shema, (parent, view) =>
                 {
-                    return ShemaToTGOne.Width * 0.04;    // установка координаты X
+                    return Shema.Width * 0.04;    // установка координаты X
                 }),
-                Constraint.RelativeToView(ShemaToTGOne, (parent, view) =>
+                Constraint.RelativeToView(Shema, (parent, view) =>
                 {
-                    return ShemaToTGOne.Height * 0.045;    // установка координаты Y
+                    return Shema.Height * 0.045;    // установка координаты Y
                 }));
             RTLT.Children.Add(LargeMark,
 
-                Constraint.RelativeToView(ShemaToTGOne, (parent, view) =>
+                Constraint.RelativeToView(Shema, (parent, view) =>
                 {
                     return 0;    // установка координаты X
                 }),
 
-                Constraint.RelativeToView(ShemaToTGOne, (parent, view) =>
+                Constraint.RelativeToView(Shema, (parent, view) =>
                 {
                     return 0;    // установка координаты Y
                 }),
-                Constraint.RelativeToView(ShemaToTGOne, (parent, view) =>
+                Constraint.RelativeToView(Shema, (parent, view) =>
                 {
-                    return ShemaToTGOne.Width * 0.08;    // установка координаты X
+                    return Shema.Width * 0.08;    // установка координаты X
                 }),
-                Constraint.RelativeToView(ShemaToTGOne, (parent, view) =>
+                Constraint.RelativeToView(Shema, (parent, view) =>
                 {
-                    return ShemaToTGOne.Height * 0.10;    // установка координаты Y
+                    return Shema.Height * 0.10;    // установка координаты Y
                 }));
         }
     }

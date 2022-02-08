@@ -4,12 +4,7 @@
              x:Class="PlanHPP.View.WorkShopView">
     <ContentView.Content>
         <RelativeLayout x:Name="RTLT" x:FieldModifier="public" WidthRequest="600" HeightRequest="480" class="static">
-            <Image x:Name="ShemaToTGOne" 
-                 Source="ShemaToTGOneTested.jpg"
-                 RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}"
-                 Aspect="AspectFit"  
-                 HorizontalOptions="Fill"
-                 VerticalOptions="Fill"/>
+            
         </RelativeLayout>
     </ContentView.Content>
 </ContentView>
