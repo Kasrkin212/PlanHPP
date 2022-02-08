@@ -6,6 +6,6 @@
         <Image x:Name="LargeMark" x:FieldModifier="public" Source="PanPressed.jpg"
                  RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToView, ElementName=ShemaToTGOne, Property=Width, Factor=0.08}"
                  RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToView, ElementName=ShemaToTGOne, Property=Height, Factor=0.10}"            
-                Scale="0"/>
+                 Scale="0"/>
   </ContentView.Content>
 </ContentView>

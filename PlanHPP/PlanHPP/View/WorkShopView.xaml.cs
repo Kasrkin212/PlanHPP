@@ -17,7 +17,6 @@ namespace PlanHPP.View
         public Image SmallMark = new Image();
         public Image MiddleMark = new Image();
         public Image LargeMark = new Image();
-        int Go = 0;
         Image Shema = new Image();
         
         public WorkShopView()

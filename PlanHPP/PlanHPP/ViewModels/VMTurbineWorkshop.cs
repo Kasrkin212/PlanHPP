@@ -25,13 +25,16 @@ namespace PlanHPP.ViewModels
         public double _Scale = 0;
         public double DisplayX = (double)DeviceDisplay.MainDisplayInfo.Width / (double)DeviceDisplay.MainDisplayInfo.Density;
         public double DisplayY = (double)DeviceDisplay.MainDisplayInfo.Height / 2 / (double)DeviceDisplay.MainDisplayInfo.Density;
-        public WorkshopGestureContainer _PTZCC = new WorkshopGestureContainer();
+        public WorkshopGestureContainer _FirstWorkshopGestureContainer = new WorkshopGestureContainer();
+        public WorkShopView FirstWorkShopView = new WorkShopView();
+        public event PropertyChangedEventHandler PropertyChanged;
+        
         public ICommand ChangeLableMethod { set; get; }
         public ICommand ChangeCoordinatesMethod { set; get; }
         public ICommand AppearCommand { set; get; }
         public Motor Motor { get; set; }
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        
         public string ViewName
         {
             get
@@ -110,18 +113,16 @@ namespace PlanHPP.ViewModels
                 OnPropertyChanged(nameof(Scale));
             }
         }
-        
-        public WorkShopView RTLT = new WorkShopView();
-        public WorkshopGestureContainer PTZCC
+        public WorkshopGestureContainer FirstWorkshopGestureContainer
         {
             get
             {
-                return _PTZCC;
+                return _FirstWorkshopGestureContainer;
             }
             set
             {
-                _PTZCC = value;
-                OnPropertyChanged(nameof(PTZCC));
+                _FirstWorkshopGestureContainer = value;
+                OnPropertyChanged(nameof(FirstWorkshopGestureContainer));
             }
         }
 
@@ -132,7 +133,7 @@ namespace PlanHPP.ViewModels
         {
 
 
-            PTZCC.Content = RTLT;
+            FirstWorkshopGestureContainer.Content = FirstWorkShopView;
 
             AppearCommand = new Command(AppearVoid);
 
@@ -154,32 +155,32 @@ namespace PlanHPP.ViewModels
                     ViewSwitch = motor.Switch;
                     ViewIndicator = motor.Indicator;
 
-                    RTLT.SmallMark.TranslationX = PTZCC.Width * motor.X;
-                    RTLT.SmallMark.TranslationY = PTZCC.Height * motor.Y;
+                    FirstWorkShopView.SmallMark.TranslationX = FirstWorkshopGestureContainer.Width * motor.X;
+                    FirstWorkShopView.SmallMark.TranslationY = FirstWorkshopGestureContainer.Height * motor.Y;
 
-                    RTLT.MiddleMark.TranslationX = PTZCC.Width * motor.X;
-                    RTLT.MiddleMark.TranslationY = PTZCC.Height * motor.Y;
+                    FirstWorkShopView.MiddleMark.TranslationX = FirstWorkshopGestureContainer.Width * motor.X;
+                    FirstWorkShopView.MiddleMark.TranslationY = FirstWorkshopGestureContainer.Height * motor.Y;
 
-                    RTLT.LargeMark.TranslationX = PTZCC.Width * motor.X;
-                    RTLT.LargeMark.TranslationY = PTZCC.Height * motor.Y;
+                    FirstWorkShopView.LargeMark.TranslationX = FirstWorkshopGestureContainer.Width * motor.X;
+                    FirstWorkShopView.LargeMark.TranslationY = FirstWorkshopGestureContainer.Height * motor.Y;
                   
                     if (motor.ID == 3)
                     {
-                        RTLT.SmallMark.Scale = 0;
-                        RTLT.MiddleMark.Scale = 0;
-                        RTLT.LargeMark.Scale = 1;
+                        FirstWorkShopView.SmallMark.Scale = 0;
+                        FirstWorkShopView.MiddleMark.Scale = 0;
+                        FirstWorkShopView.LargeMark.Scale = 1;
                     }
                     else if (motor.ID == 10 || motor.ID == 11 || motor.ID == 12 || motor.ID == 13)
                     {
-                        RTLT.SmallMark.Scale = 0;
-                        RTLT.MiddleMark.Scale = 1;
-                        RTLT.LargeMark.Scale = 0;
+                        FirstWorkShopView.SmallMark.Scale = 0;
+                        FirstWorkShopView.MiddleMark.Scale = 1;
+                        FirstWorkShopView.LargeMark.Scale = 0;
                     }
                     else
                     {
-                        RTLT.SmallMark.Scale = 1;
-                        RTLT.MiddleMark.Scale = 0;
-                        RTLT.LargeMark.Scale = 0;
+                        FirstWorkShopView.SmallMark.Scale = 1;
+                        FirstWorkShopView.MiddleMark.Scale = 0;
+                        FirstWorkShopView.LargeMark.Scale = 0;
                     }
 
 
@@ -203,72 +204,72 @@ namespace PlanHPP.ViewModels
                     ViewName = motor.Name;
                     ViewSwitch = motor.Switch;
                     ViewIndicator = motor.Indicator;
-                    PTZCC.Content.Scale = 1;
+                    FirstWorkshopGestureContainer.Content.Scale = 1;
                   
                   
-                    if ((motor.X * PTZCC.Width) < DisplayX / 2)
+                    if ((motor.X * FirstWorkshopGestureContainer.Width) < DisplayX / 2)
                     {
-                        PTZCC.Content.TranslationX = 0;
+                        FirstWorkshopGestureContainer.Content.TranslationX = 0;
                         XTranslation = 0;
                   
                   
                     }
-                    else if ((motor.X * PTZCC.Width) < (PTZCC.Width - DisplayX / 2))
+                    else if ((motor.X * FirstWorkshopGestureContainer.Width) < (FirstWorkshopGestureContainer.Width - DisplayX / 2))
                     {
-                        PTZCC.Content.TranslationX = -((motor.X * PTZCC.Width) - DisplayX / 2);
-                        XTranslation = -((motor.X * PTZCC.Width) - DisplayX / 2);
+                        FirstWorkshopGestureContainer.Content.TranslationX = -((motor.X * FirstWorkshopGestureContainer.Width) - DisplayX / 2);
+                        XTranslation = -((motor.X * FirstWorkshopGestureContainer.Width) - DisplayX / 2);
                     }
-                    if ((motor.X * PTZCC.Width) > (PTZCC.Width - DisplayX / 2))
+                    if ((motor.X * FirstWorkshopGestureContainer.Width) > (FirstWorkshopGestureContainer.Width - DisplayX / 2))
                     {
-                        PTZCC.Content.TranslationX = -(PTZCC.Width - DisplayX);
-                        XTranslation = -(PTZCC.Width - DisplayX);
+                        FirstWorkshopGestureContainer.Content.TranslationX = -(FirstWorkshopGestureContainer.Width - DisplayX);
+                        XTranslation = -(FirstWorkshopGestureContainer.Width - DisplayX);
                     }
                   
                   
                   
                   
-                    if ((motor.Y * PTZCC.Height) < DisplayY / 2)
+                    if ((motor.Y * FirstWorkshopGestureContainer.Height) < DisplayY / 2)
                     {
-                        PTZCC.Content.TranslationY = 0;
+                        FirstWorkshopGestureContainer.Content.TranslationY = 0;
                         YTranslation = 0;
                     }
-                    else if ((motor.Y * PTZCC.Height) < (PTZCC.Height - DisplayY / 2))
+                    else if ((motor.Y * FirstWorkshopGestureContainer.Height) < (FirstWorkshopGestureContainer.Height - DisplayY / 2))
                     {
-                        PTZCC.Content.TranslationY = -((motor.Y * PTZCC.Height) - DisplayY / 2);
-                        YTranslation = -((motor.Y * PTZCC.Height) - DisplayY / 2);
+                        FirstWorkshopGestureContainer.Content.TranslationY = -((motor.Y * FirstWorkshopGestureContainer.Height) - DisplayY / 2);
+                        YTranslation = -((motor.Y * FirstWorkshopGestureContainer.Height) - DisplayY / 2);
                     }
-                    if ((motor.Y * PTZCC.Height) > (PTZCC.Height - DisplayY / 2))
+                    if ((motor.Y * FirstWorkshopGestureContainer.Height) > (FirstWorkshopGestureContainer.Height - DisplayY / 2))
                     {
-                        PTZCC.Content.TranslationY = -(PTZCC.Height - DisplayY);
-                        YTranslation = -(PTZCC.Height - DisplayY);
+                        FirstWorkshopGestureContainer.Content.TranslationY = -(FirstWorkshopGestureContainer.Height - DisplayY);
+                        YTranslation = -(FirstWorkshopGestureContainer.Height - DisplayY);
                     }
 
-                    RTLT.SmallMark.TranslationX = PTZCC.Width * motor.X;
-                    RTLT.SmallMark.TranslationY = PTZCC.Height * motor.Y;
+                    FirstWorkShopView.SmallMark.TranslationX = FirstWorkshopGestureContainer.Width * motor.X;
+                    FirstWorkShopView.SmallMark.TranslationY = FirstWorkshopGestureContainer.Height * motor.Y;
 
-                    RTLT.MiddleMark.TranslationX = PTZCC.Width * motor.X;
-                    RTLT.MiddleMark.TranslationY = PTZCC.Height * motor.Y;
+                    FirstWorkShopView.MiddleMark.TranslationX = FirstWorkshopGestureContainer.Width * motor.X;
+                    FirstWorkShopView.MiddleMark.TranslationY = FirstWorkshopGestureContainer.Height * motor.Y;
 
-                    RTLT.LargeMark.TranslationX = PTZCC.Width * motor.X;
-                    RTLT.LargeMark.TranslationY = PTZCC.Height * motor.Y;
+                    FirstWorkShopView.LargeMark.TranslationX = FirstWorkshopGestureContainer.Width * motor.X;
+                    FirstWorkShopView.LargeMark.TranslationY = FirstWorkshopGestureContainer.Height * motor.Y;
                   
                     if (motor.ID == 3)
                     {
-                        RTLT.SmallMark.Scale = 0;
-                        RTLT.MiddleMark.Scale = 0;
-                        RTLT.LargeMark.Scale = 1;
+                        FirstWorkShopView.SmallMark.Scale = 0;
+                        FirstWorkShopView.MiddleMark.Scale = 0;
+                        FirstWorkShopView.LargeMark.Scale = 1;
                     }
                     else if (motor.ID == 10 || motor.ID == 11 || motor.ID == 12 || motor.ID == 13)
                     {
-                        RTLT.SmallMark.Scale = 0;
-                        RTLT.MiddleMark.Scale = 1;
-                        RTLT.LargeMark.Scale = 0;
+                        FirstWorkShopView.SmallMark.Scale = 0;
+                        FirstWorkShopView.MiddleMark.Scale = 1;
+                        FirstWorkShopView.LargeMark.Scale = 0;
                     }
                     else
                     {
-                        RTLT.SmallMark.Scale = 1;
-                        RTLT.MiddleMark.Scale = 0;
-                        RTLT.LargeMark.Scale = 0;
+                        FirstWorkShopView.SmallMark.Scale = 1;
+                        FirstWorkShopView.MiddleMark.Scale = 0;
+                        FirstWorkShopView.LargeMark.Scale = 0;
                     }
 
 
@@ -282,8 +283,8 @@ namespace PlanHPP.ViewModels
         {
             
             ViewName = Convert.ToString(XTranslation);
-            PTZCC.Content.TranslationX = -100;
-            PTZCC.Content.TranslationY = -100;
+            FirstWorkshopGestureContainer.Content.TranslationX = -100;
+            FirstWorkshopGestureContainer.Content.TranslationY = -100;
             
 
         }
