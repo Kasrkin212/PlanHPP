@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="PlanHPP.View.WorkShopView">
-    <ContentView.Content>
-        <RelativeLayout x:Name="RTLT" x:FieldModifier="public" WidthRequest="600" HeightRequest="480" class="static"/>
+             x:Class="PlanHPP.Pages.Marks.SmallEngineButtonMark">
+  <ContentView.Content>
+        <Image x:Name="SmallMark" x:FieldModifier="public" Source="ElectroMotorPressed.jpg" Scale="0"/>
     </ContentView.Content>
 </ContentView>

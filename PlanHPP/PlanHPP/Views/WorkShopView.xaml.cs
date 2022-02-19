@@ -5,11 +5,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using PlanHPP.Pages.Marks;
+using PlanHPP.Pages.Motors;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace PlanHPP.View
+namespace PlanHPP.Pages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class WorkShopView : ContentView
@@ -36,7 +37,8 @@ namespace PlanHPP.View
             Shema.Aspect = Aspect.AspectFit;
             Shema.HorizontalOptions = LayoutOptions.Fill;
             Shema.VerticalOptions = LayoutOptions.Fill;
-            
+
+
             RTLT.Children.Add(Shema,
             Constraint.RelativeToParent((parent) =>
             {

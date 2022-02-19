@@ -2,7 +2,7 @@
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace PlanHPP.View
+namespace PlanHPP.Pages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MotorTable : ContentPage

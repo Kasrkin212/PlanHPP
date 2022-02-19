@@ -1,4 +1,4 @@
-﻿using PlanHPP.View;
+﻿using PlanHPP.Views;
 using System;
 using System.ComponentModel;
 using Xamarin.Forms;

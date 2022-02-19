@@ -2,11 +2,9 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              xmlns:local="clr-namespace:PlanHPP.ViewModels"
-             x:Class="PlanHPP.View.MotorTable"
+             x:Class="PlanHPP.Pages.MotorTable"
              NavigationPage.HasNavigationBar="false">
-    <ContentPage.BindingContext>
-        <local:VMTurbineWorkshop/>
-    </ContentPage.BindingContext>
+    
     <ContentPage.Content>
 
         <Grid BackgroundColor="Black">

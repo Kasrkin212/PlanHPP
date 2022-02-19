@@ -2,15 +2,11 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
-             xmlns:local="clr-namespace:PlanHPP.ViewModels"
              xmlns:local1="clr-namespace:PlanHPP.Gestures"
-             x:Class="PlanHPP.View.TurbineWorkshop"
+             x:Class="PlanHPP.Pages.TurbinePage"
              x:FieldModifier="public"
              NavigationPage.HasNavigationBar="false">
 
-    <ContentPage.BindingContext>
-        <local:VMTurbineWorkshop/>
-    </ContentPage.BindingContext>
     
     <ContentPage.Behaviors>
         <xct:EventToCommandBehavior Command="{Binding AppearCommand}" EventName="Appearing" />

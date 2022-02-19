@@ -11,35 +11,40 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="FreshMvvm" Version="4.0.1" />
     <PackageReference Include="Xamarin.CommunityToolkit" Version="1.0.2" />
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2291" />
     <PackageReference Include="Xamarin.Essentials" Version="1.7.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="View\LargeEngineButtonMark.xaml">
+    <EmbeddedResource Update="Views\Marks\LargeEngineButtonMark.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="View\MiddleEngineButtonMark.xaml">
+    <EmbeddedResource Update="Views\Marks\MiddleEngineButtonMark.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="View\MotorTable.xaml">
+    <EmbeddedResource Update="Views\MotorTable.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="View\RTL.xaml">
+    <EmbeddedResource Update="Views\RTL.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="View\SmallEngineButton.xaml">
+    <EmbeddedResource Update="Views\Motors\SmallEngineButton.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="View\SmallEngineButtonMark.xaml">
+    <EmbeddedResource Update="Views\Marks\SmallEngineButtonMark.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="View\TurbineWorkshop.xaml">
+    <EmbeddedResource Update="Pages\TurbineWorkshop.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="View\WorkShopView.xaml">
+    <EmbeddedResource Update="Views\WorkShopView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Services\" />
   </ItemGroup>
 </Project>

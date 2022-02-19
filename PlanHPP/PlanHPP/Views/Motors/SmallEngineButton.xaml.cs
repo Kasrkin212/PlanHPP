@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace PlanHPP.View
+namespace PlanHPP.Pages.Motors
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class SmallEngineButtonMark : ContentView
+    public partial class SmallEngineButton : ContentView
     {
-        public SmallEngineButtonMark()
+        public SmallEngineButton()
         {
             InitializeComponent();
         }

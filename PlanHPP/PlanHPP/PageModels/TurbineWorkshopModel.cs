@@ -6,16 +6,16 @@ using System.Windows.Input;
 using PlanHPP.Models;
 using PlanHPP.Models.Lists;
 using Xamarin.Forms;
-using PlanHPP.View;
+using PlanHPP.Pages;
 using Xamarin.Essentials;
 using System.Runtime.CompilerServices;
 using PlanHPP.Gestures;
 
-namespace PlanHPP.ViewModels
+namespace PlanHPP.PageModels
 {
 
 
-    public class VMTurbineWorkshop : INotifyPropertyChanged
+    public class TurbinePageModel : FreshMvvm.FreshBasePageModel
     {
         public string _ViewName;
         public string _ViewSwitch;
@@ -27,7 +27,6 @@ namespace PlanHPP.ViewModels
         public double DisplayY = (double)DeviceDisplay.MainDisplayInfo.Height / 2 / (double)DeviceDisplay.MainDisplayInfo.Density;
         public WorkshopGestureContainer _FirstWorkshopGestureContainer = new WorkshopGestureContainer();
         public WorkShopView FirstWorkShopView = new WorkShopView();
-        public event PropertyChangedEventHandler PropertyChanged;
         
         public ICommand ChangeLableMethod { set; get; }
         public ICommand ChangeCoordinatesMethod { set; get; }
@@ -45,7 +44,7 @@ namespace PlanHPP.ViewModels
             set
             {
                 _ViewName = value;
-                OnPropertyChanged(nameof(ViewName));
+                RaisePropertyChanged(nameof(ViewName));
             }
         }
         public string ViewSwitch
@@ -58,7 +57,7 @@ namespace PlanHPP.ViewModels
             set
             {
                 _ViewSwitch = value;
-                OnPropertyChanged(nameof(ViewSwitch));
+                RaisePropertyChanged(nameof(ViewSwitch));
             }
         }
         public int ViewIndicator
@@ -71,7 +70,7 @@ namespace PlanHPP.ViewModels
             set
             {
                 _ViewIndicator = value;
-                OnPropertyChanged(nameof(ViewIndicator));
+                RaisePropertyChanged(nameof(ViewIndicator));
             }
         }
         public double XTranslation
@@ -84,7 +83,7 @@ namespace PlanHPP.ViewModels
             set
             {
                 _XTranslation = value;
-                OnPropertyChanged(nameof(XTranslation));
+                RaisePropertyChanged(nameof(XTranslation));
             }
         }
         public double YTranslation
@@ -97,7 +96,7 @@ namespace PlanHPP.ViewModels
             set
             {
                 _YTranslation = value;
-                OnPropertyChanged(nameof(YTranslation));
+                RaisePropertyChanged(nameof(YTranslation));
             }
         }
         public double Scale
@@ -110,7 +109,7 @@ namespace PlanHPP.ViewModels
             set
             {
                 _YTranslation = value;
-                OnPropertyChanged(nameof(Scale));
+                RaisePropertyChanged(nameof(Scale));
             }
         }
         public WorkshopGestureContainer FirstWorkshopGestureContainer
@@ -122,14 +121,14 @@ namespace PlanHPP.ViewModels
             set
             {
                 _FirstWorkshopGestureContainer = value;
-                OnPropertyChanged(nameof(FirstWorkshopGestureContainer));
+                RaisePropertyChanged(nameof(FirstWorkshopGestureContainer));
             }
         }
 
 
 
 
-        public VMTurbineWorkshop()
+        public TurbinePageModel()
         {
 
 
@@ -287,12 +286,6 @@ namespace PlanHPP.ViewModels
             FirstWorkshopGestureContainer.Content.TranslationY = -100;
             
 
-        }
-
-        void OnPropertyChanged([CallerMemberName] string propertyname = null)
-        {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyname));
         }
 
     }

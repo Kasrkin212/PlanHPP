@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="PlanHPP.View.LargeEngineButtonMark">
+             x:Class="PlanHPP.Pages.Marks.LargeEngineButtonMark">
   <ContentView.Content>
         <Image x:Name="LargeMark" x:FieldModifier="public" Source="PanPressed.jpg"
                  RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToView, ElementName=ShemaToTGOne, Property=Width, Factor=0.08}"
