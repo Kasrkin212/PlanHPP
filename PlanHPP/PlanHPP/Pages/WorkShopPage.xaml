@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
              xmlns:local1="clr-namespace:PlanHPP.Gestures"
-             x:Class="PlanHPP.Pages.TurbinePage"
+             x:Class="PlanHPP.Pages.WorkShopPage"
              x:FieldModifier="public"
              NavigationPage.HasNavigationBar="false">
 
@@ -55,7 +55,7 @@
         <Button x:Name="ButtonToTable" Text="Таблица" 
             RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=X, Factor=1}"
             RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Y , Constant=5, Factor=1}"
-            Clicked="GoNext"/>
+            Command="{Binding GoToTableCommand}"/>
     </RelativeLayout>
 
 </ContentPage>

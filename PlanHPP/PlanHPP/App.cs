@@ -1,4 +1,5 @@
-﻿using PlanHPP.PageModels;
+﻿using FreshMvvm;
+using PlanHPP.PageModels;
 using PlanHPP.Pages;
 using Xamarin.Forms;
 
@@ -10,7 +11,9 @@ namespace PlanHPP
 		public static double ScreenHeight;
 		public App()
 		{
-			MainPage = FreshMvvm.FreshPageModelResolver.ResolvePageModel<TurbinePageModel>();
+			var Page = FreshMvvm.FreshPageModelResolver.ResolvePageModel<WorkShopPageModel>();
+			var NavigationPage = new FreshNavigationContainer(Page);
+			MainPage = NavigationPage;
 		}
 
 		protected override void OnStart()

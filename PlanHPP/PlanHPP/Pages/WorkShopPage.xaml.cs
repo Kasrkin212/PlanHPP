@@ -7,7 +7,7 @@ namespace PlanHPP.Pages
 {
 
 
-    public partial class TurbinePage : ContentPage
+    public partial class WorkShopPage : ContentPage
 
     {
 
@@ -22,7 +22,7 @@ namespace PlanHPP.Pages
         double DisplayX = (double)DeviceDisplay.MainDisplayInfo.Width / (double)DeviceDisplay.MainDisplayInfo.Density;
         double DisplayY = (double)DeviceDisplay.MainDisplayInfo.Height / 2 / (double)DeviceDisplay.MainDisplayInfo.Density;
 
-        public TurbinePage()
+        public WorkShopPage()
         {
 
             InitializeComponent();

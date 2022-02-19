@@ -15,7 +15,7 @@ namespace PlanHPP.PageModels
 {
 
 
-    public class TurbinePageModel : FreshMvvm.FreshBasePageModel
+    public class WorkShopPageModel : FreshMvvm.FreshBasePageModel
     {
         public string _ViewName;
         public string _ViewSwitch;
@@ -31,6 +31,7 @@ namespace PlanHPP.PageModels
         public ICommand ChangeLableMethod { set; get; }
         public ICommand ChangeCoordinatesMethod { set; get; }
         public ICommand AppearCommand { set; get; }
+        public Command GoToTableCommand { set; get; }
         public Motor Motor { get; set; }
 
         
@@ -128,11 +129,16 @@ namespace PlanHPP.PageModels
 
 
 
-        public TurbinePageModel()
+        public WorkShopPageModel()
         {
 
 
             FirstWorkshopGestureContainer.Content = FirstWorkShopView;
+
+            GoToTableCommand = new Command(() =>
+            {
+                CoreMethods.PushPageModel<TablePageModel>();
+            });
 
             AppearCommand = new Command(AppearVoid);
 
