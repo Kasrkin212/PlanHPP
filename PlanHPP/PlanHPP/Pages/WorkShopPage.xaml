@@ -13,6 +13,7 @@
     </ContentPage.Behaviors>
     
     <RelativeLayout x:Name="RL">
+        
         <RelativeLayout x:Name="FirstWorkShopView" x:FieldModifier="public" WidthRequest="600" HeightRequest="480" class="static" >
             <local1:WorkshopGestureContainer Content="{Binding FirstWorkshopGestureContainer}"/>
         </RelativeLayout>

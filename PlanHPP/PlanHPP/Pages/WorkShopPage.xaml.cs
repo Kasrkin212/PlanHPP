@@ -28,15 +28,6 @@ namespace PlanHPP.Pages
             InitializeComponent();
 
         }
-
-        private async void GoNext(object sender, EventArgs args)
-        {
-            await Navigation.PushAsync(new MotorTable());
-        }
-
-
-
-
     }
 
 }

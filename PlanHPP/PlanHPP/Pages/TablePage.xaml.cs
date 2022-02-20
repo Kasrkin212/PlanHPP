@@ -14,7 +14,6 @@ namespace PlanHPP.Pages
         public TablePage()
         {
             InitializeComponent();
-            TableOfMotor.ItemsSource = MotorList.motors;
         }
     }
 }

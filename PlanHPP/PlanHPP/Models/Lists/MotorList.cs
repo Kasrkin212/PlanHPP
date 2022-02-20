@@ -161,7 +161,6 @@ namespace PlanHPP.Models.Lists
                 X = 0.49875,
                 Y = 0.04296875
             });
-
         }
 
     }

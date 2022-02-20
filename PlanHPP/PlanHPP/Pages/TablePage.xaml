@@ -1,10 +1,20 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="PlanHPP.Pages.TablePage">
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+             x:Class="PlanHPP.Pages.TablePage"
+             x:FieldModifier="public"
+             NavigationPage.HasNavigationBar="false">
     <ContentPage.Content>
         <StackLayout>
-            <ListView x:Name="TableOfMotor">
+            <ListView x:Name="TableOfMotor" 
+                      ItemsSource="{Binding AllTableMotors}"
+                      SelectedItem="{Binding SelectedMotor, Mode=TwoWay}">
+                <ListView.Behaviors>
+                    <xct:EventToCommandBehavior
+                    Command="{Binding GoToWorkShopCommand}"
+                    EventName="ItemTapped" />
+                </ListView.Behaviors>
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
