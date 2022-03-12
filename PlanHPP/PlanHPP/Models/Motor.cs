@@ -13,6 +13,7 @@ namespace PlanHPP.Models
         public int Indicator { get; set; }
         public double X { get; set; }
         public double Y { get; set; }
+        public string Comment { get; set; } = "Введите комментарий";
 
         
     }

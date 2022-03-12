@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace PlanHPP.Pages
+namespace PlanHPP.Views.Motors
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class RTL : ContentView
+    public partial class SmallMotorButton : ContentView
     {
-        public RTL()
+        public SmallMotorButton()
         {
             InitializeComponent();
         }

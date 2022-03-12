@@ -10,6 +10,8 @@ using PlanHPP.Pages;
 using Xamarin.Essentials;
 using System.Runtime.CompilerServices;
 using PlanHPP.Gestures;
+using PlanHPP.Views;
+using PlanHPP.DataServices;
 
 namespace PlanHPP.PageModels
 {
@@ -17,8 +19,10 @@ namespace PlanHPP.PageModels
 
     public class WorkShopPageModel : FreshMvvm.FreshBasePageModel
     {
+        #region Fields
         public string _ViewName;
         public string _ViewSwitch;
+        public string _Comment;
         public int _ViewIndicator = 0;
         public double _XTranslation;
         public double _YTranslation;
@@ -26,15 +30,19 @@ namespace PlanHPP.PageModels
         public double DisplayX = (double)DeviceDisplay.MainDisplayInfo.Width / (double)DeviceDisplay.MainDisplayInfo.Density;
         public double DisplayY = (double)DeviceDisplay.MainDisplayInfo.Height / 2 / (double)DeviceDisplay.MainDisplayInfo.Density;
         public WorkshopGestureContainer _FirstWorkshopGestureContainer = new WorkshopGestureContainer();
-        public WorkShopView FirstWorkShopView = new WorkShopView();
-        public int ID;
-        
-        public ICommand ChangeLableMethod { set; get; }
-        public ICommand ChangeCoordinatesMethod { set; get; }
-        public ICommand AppearCommand { set; get; }
+        public WorkShopView FirstWorkShopView;
+        List<Motor> motors = new List<Motor>();
+        #endregion
+
+        #region Properties
+        public Command ChangeLableMethod { set; get; }
+        public Command ChangeCoordinatesMethod { set; get; }
+        public Command AppearCommand { set; get; }
         public Command GoToTableCommand { set; get; }
+        public Command RefreshWorkShopPageCommand { set; get; }
+        public Command SaveCommentCommand { set; get; }
         public Motor SelectedMotor { set; get; }
-        public Motor Motor { get; set; }
+
 
         
         public string ViewName
@@ -61,6 +69,19 @@ namespace PlanHPP.PageModels
             {
                 _ViewSwitch = value;
                 RaisePropertyChanged(nameof(ViewSwitch));
+            }
+        }
+        public string Comment
+        {
+            get
+            {
+                return _Comment;
+            }
+
+            set
+            {
+                _Comment = value;
+                RaisePropertyChanged(nameof(Comment));
             }
         }
         public int ViewIndicator
@@ -127,26 +148,36 @@ namespace PlanHPP.PageModels
                 RaisePropertyChanged(nameof(FirstWorkshopGestureContainer));
             }
         }
+        #endregion
 
 
 
-
-        public WorkShopPageModel()
+        public WorkShopPageModel(IWebService WebService)
         {
-
-
+            FirstWorkShopView = new WorkShopView(WebService);
             FirstWorkshopGestureContainer.Content = FirstWorkShopView;
 
             GoToTableCommand = new Command(() =>
             {
                 CoreMethods.PushPageModel<TablePageModel>();
             });
+            
+            RefreshWorkShopPageCommand = new Command(() =>
+            {
+                FirstWorkShopView = new WorkShopView(WebService);
+                FirstWorkshopGestureContainer.Content = FirstWorkShopView;
+                AppearVoid(WebService);
+            });
+            
+            SaveCommentCommand = new Command(() =>
+            {
+                SelectedMotor.Comment = Comment;
+            });
 
-            AppearCommand = new Command(AppearVoid);
-
-
-            List<Motor> motors = new List<Motor>();
-            motors = MotorList.motors;
+            AppearCommand = new Command(() =>
+            {
+                AppearVoid(WebService);
+            });
 
 
             ChangeLableMethod = new Command<string>((key) =>
@@ -161,6 +192,8 @@ namespace PlanHPP.PageModels
                     ViewName = motor.Name;
                     ViewSwitch = motor.Switch;
                     ViewIndicator = motor.Indicator;
+                    Comment = motor.Comment;
+                    SelectedMotor = motor;
 
                     FirstWorkShopView.SmallMark.TranslationX = FirstWorkshopGestureContainer.Width * motor.X;
                     FirstWorkShopView.SmallMark.TranslationY = FirstWorkshopGestureContainer.Height * motor.Y;
@@ -195,10 +228,9 @@ namespace PlanHPP.PageModels
 
             });
         }
-        public void AppearVoid()
+        async public void AppearVoid(IWebService WebService)
         {
-            List<Motor> Cmotors = new List<Motor>();
-            Cmotors = MotorList.motors;
+            motors = await WebService.GetDataAsync();
 
             if (SelectedMotor == null)
             {
@@ -207,9 +239,8 @@ namespace PlanHPP.PageModels
             }
             else
             {
-                ID = SelectedMotor.ID;
-                var selectedMotors = from motor in Cmotors
-                                     where motor.ID == ID
+                var selectedMotors = from motor in motors
+                                     where motor.ID == SelectedMotor.ID
                                      select motor;
 
                 foreach (Motor motor in selectedMotors)
@@ -218,6 +249,7 @@ namespace PlanHPP.PageModels
                     ViewName = motor.Name;
                     ViewSwitch = motor.Switch;
                     ViewIndicator = motor.Indicator;
+                    Comment = motor.Comment;
                     FirstWorkshopGestureContainer.Content.Scale = 1;
 
 

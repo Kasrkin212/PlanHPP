@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <PackageReference Include="FreshMvvm" Version="4.0.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="Xamarin.CommunityToolkit" Version="1.0.2" />
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2291" />
     <PackageReference Include="Xamarin.Essentials" Version="1.7.0" />
@@ -21,22 +22,16 @@
     <EmbeddedResource Update="Pages\TablePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Marks\LargeEngineButtonMark.xaml">
+    <EmbeddedResource Update="Views\Marks\LargeMotorButtonMark.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Marks\MiddleEngineButtonMark.xaml">
+    <EmbeddedResource Update="Views\Marks\MiddleMotorButtonMark.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\MotorTable.xaml">
+    <EmbeddedResource Update="Views\Motors\SmallMotorButton.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\RTL.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\Motors\SmallEngineButton.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\Marks\SmallEngineButtonMark.xaml">
+    <EmbeddedResource Update="Views\Marks\SmallMotorButtonMark.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Pages\WorkShopPage.xaml">
@@ -57,6 +52,18 @@
     </Compile>
     <Compile Update="Pages\WorkShopPage.xaml.cs">
       <DependentUpon>WorkShopPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Marks\LargeMotorButtonMark.xaml.cs">
+      <DependentUpon>LargeMotorButtonMark.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Marks\MiddleMotorButtonMark.xaml.cs">
+      <DependentUpon>MiddleMotorButtonMark.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Marks\SmallMotorButtonMark.xaml.cs">
+      <DependentUpon>SmallMotorButtonMark.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Motors\SmallMotorButton.xaml.cs">
+      <DependentUpon>SmallMotorButton.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
 </Project>

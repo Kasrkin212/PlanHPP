@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="PlanHPP.Pages.Motors.SmallEngineButton">
+             x:Class="PlanHPP.Views.Motors.SmallMotorButton">
   <ContentView.Content>
         <RelativeLayout>
             <RelativeLayout.Resources>
@@ -33,7 +33,7 @@
                     </Style>
                 </ResourceDictionary>
             </RelativeLayout.Resources>
-            <ImageButton x:Name="SmallEngine" x:FieldModifier="public" Style="{StaticResource ButtonStyleLittle}"/>
+            <ImageButton x:Name="SmallMotor" x:FieldModifier="public" Style="{StaticResource ButtonStyleLittle}"/>
         </RelativeLayout>
   </ContentView.Content>
 </ContentView>

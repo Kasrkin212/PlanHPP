@@ -11,10 +11,10 @@
     <ContentPage.Behaviors>
         <xct:EventToCommandBehavior Command="{Binding AppearCommand}" EventName="Appearing" />
     </ContentPage.Behaviors>
-    
-    <RelativeLayout x:Name="RL">
+
+    <RelativeLayout x:Name="WorkShopRelativeLayout">
         
-        <RelativeLayout x:Name="FirstWorkShopView" x:FieldModifier="public" WidthRequest="600" HeightRequest="480" class="static" >
+        <RelativeLayout x:Name="FirstWorkShopView" x:FieldModifier="public" WidthRequest="600" HeightRequest="480">
             <local1:WorkshopGestureContainer Content="{Binding FirstWorkshopGestureContainer}"/>
         </RelativeLayout>
             
@@ -48,15 +48,33 @@
             RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView, ElementName=BigFrame, Property=Y, Factor= 1.1}"
             RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToView, ElementName=FrameSwitch, Property=Width}"
             RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToView, ElementName=FrameSwitch, Property=Height}"/>
+        <Label x:Name="CommentLable" x:FieldModifier="public" Font="26" Text="Комментарий:"
+            RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToView, ElementName=FrameSwitch, Property=X}"
+            RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView, ElementName=BigFrame, Property=Y, Factor= 1.4}"
+            RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToView, ElementName=FrameSwitch, Property=Width}"
+            RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToView, ElementName=FrameSwitch, Property=Height}"/>
+        <Editor x:Name="EditorComment" x:FieldModifier="public" Text="{Binding Comment}"
+            RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToView, ElementName=FrameSwitch, Property=X}"
+            RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView, ElementName=BigFrame, Property=Y, Factor= 1.5}"
+            RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToView, ElementName=FrameSwitch, Property=Width}"
+            RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToView, ElementName=FrameSwitch, Property=Height}"/>
+        <Button x:Name="CommentButton" x:FieldModifier="public" Text="Сохранить"
+            RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToView, ElementName=FrameSwitch, Property=X}"
+            RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView, ElementName=BigFrame, Property=Y, Factor= 1.7}"
+            Command="{Binding SaveCommentCommand}"/>
         <Image x:Name="Indicator" x:FieldModifier="public"  Source="powerbox.jpg" Scale="{Binding ViewIndicator}"
-            RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=X, Factor=1}"
+            RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=X, Factor= 1}"
             RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView, ElementName=BigFrame, Property=Y, Factor= 1.2}"
-            RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToView, ElementName=BigFrame, Property=Width, Factor=0.2}"
-            RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToView, ElementName=BigFrame, Property=Height, Factor=0.2}"/>
-        <Button x:Name="ButtonToTable" Text="Таблица" 
-            RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=X, Factor=1}"
-            RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Y , Constant=5, Factor=1}"
+            RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToView, ElementName=BigFrame, Property=Width, Factor= 0.2}"
+            RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToView, ElementName=BigFrame, Property=Height, Factor= 0.2}"/>
+        <Button x:Name="ToTableButton" Text="Таблица" 
+            RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=X, Factor= 1}"
+            RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Y, Constant= 5, Factor= 1}"
             Command="{Binding GoToTableCommand}"/>
+        <Button x:Name="RefreshWorkShopPageButton" Text="Обновить" 
+            RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=X, Constant= 100, Factor= 1.8}"
+            RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Y, Constant= 5, Factor= 1}"
+            Command="{Binding RefreshWorkShopPageCommand}"/>
     </RelativeLayout>
 
 </ContentPage>

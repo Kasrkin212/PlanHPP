@@ -7,7 +7,6 @@ namespace PlanHPP.Models.Lists
         public static List<Motor> motors = new List<Motor>();
         static MotorList()
         {
-            motors = new List<Motor>();
             motors.Add(new Motor()
             {
                 ID = 1,
@@ -33,7 +32,7 @@ namespace PlanHPP.Models.Lists
                 Switch = "Секция 1, ячейка 601",
                 Indicator = 0,
                 X = 0.54375,
-                Y = 0.46484375
+                Y = 0.46484375,
             });
             motors.Add(new Motor()
             {

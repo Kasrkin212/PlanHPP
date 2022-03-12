@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace PlanHPP.Pages.Marks
+namespace PlanHPP.Views.Marks
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class LargeEngineButtonMark : ContentView
+    public partial class LargeMotorButtonMark : ContentView
     {
-        public LargeEngineButtonMark()
+        public LargeMotorButtonMark()
         {
             InitializeComponent();
         }

@@ -5,12 +5,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using PlanHPP.Pages.Marks;
-using PlanHPP.Pages.Motors;
+using PlanHPP.Views.Marks;
+using PlanHPP.Views.Motors;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using PlanHPP.DataServices;
 
-namespace PlanHPP.Pages
+namespace PlanHPP.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class WorkShopView : ContentView
@@ -20,16 +21,15 @@ namespace PlanHPP.Pages
         public Image LargeMark = new Image();
         Image Shema = new Image();
         
-        public WorkShopView()
+        public WorkShopView(IWebService WebService)
         {
             InitializeComponent();
-            DownloadViews();
+            DownloadViews(WebService);
         }
-        void DownloadViews()
+        void DownloadViews(IWebService WebService)
         {
             MakeMap();
-            MakeImageButton();
-            MakeMark();
+            MakeImageButton(WebService);
         }
         void MakeMap()
         {
@@ -39,7 +39,7 @@ namespace PlanHPP.Pages
             Shema.VerticalOptions = LayoutOptions.Fill;
 
 
-            RTLT.Children.Add(Shema,
+            WorkShopRelativeLayout.Children.Add(Shema,
             Constraint.RelativeToParent((parent) =>
             {
                 return 0;
@@ -54,23 +54,23 @@ namespace PlanHPP.Pages
             })
         );
         }
-        void MakeImageButton()
+        async void MakeImageButton(IWebService WebService)
         {
             List<Motor> motors;
-            //motors = await App.TodoManager.GetTasksAsync();
-            motors = MotorList.motors;
-            
+            //motors = MotorList.motors;
+            motors = await WebService.GetDataAsync();
+
             var selectedMotors = from motor in motors
                                  select motor;
             foreach (Motor motor in selectedMotors)
             {
 
-                SmallEngineButton ImageIndicator = new SmallEngineButton();
-                ImageButton SmallEngine = ImageIndicator.SmallEngine;
-                SmallEngine.CommandParameter = Convert.ToString(motor.ID);
+                SmallMotorButton ImageIndicator = new SmallMotorButton();
+                ImageButton SmallMotor = ImageIndicator.SmallMotor;
+                SmallMotor.CommandParameter = Convert.ToString(motor.ID);
 
 
-                RTLT.Children.Add(SmallEngine,
+                WorkShopRelativeLayout.Children.Add(SmallMotor,
 
                 Constraint.RelativeToView(Shema, (parent, view) =>
                 {
@@ -89,24 +89,22 @@ namespace PlanHPP.Pages
                 {
                     return Shema.Height * 0.045;  
                 }));
-
-                
-
             }
+            MakeMark();
 
         }
         void MakeMark()
         {
-            SmallEngineButtonMark smallEngineButtonMark = new SmallEngineButtonMark();
-            SmallMark = smallEngineButtonMark.SmallMark;
+            SmallMotorButtonMark smallMotorButtonMark = new SmallMotorButtonMark();
+            SmallMark = smallMotorButtonMark.SmallMark;
 
-            MiddleEngineButtonMark MiddlEngineButtonMark = new MiddleEngineButtonMark();
-            MiddleMark = MiddlEngineButtonMark.MiddleMark;
+            MiddleMotorButtonMark MiddlMotorButtonMark = new MiddleMotorButtonMark();
+            MiddleMark = MiddlMotorButtonMark.MiddleMark;
 
-            LargeEngineButtonMark LargeEngineButtonMark = new LargeEngineButtonMark();
-            LargeMark = LargeEngineButtonMark.LargeMark;
+            LargeMotorButtonMark LargeMotorButtonMark = new LargeMotorButtonMark();
+            LargeMark = LargeMotorButtonMark.LargeMark;
 
-            RTLT.Children.Add(SmallMark,
+            WorkShopRelativeLayout.Children.Add(SmallMark,
 
                 Constraint.RelativeToView(Shema, (parent, view) =>
                 {
@@ -125,7 +123,7 @@ namespace PlanHPP.Pages
                 {
                     return Shema.Height * 0.045;  
                 }));
-            RTLT.Children.Add(MiddleMark,
+            WorkShopRelativeLayout.Children.Add(MiddleMark,
 
                 Constraint.RelativeToView(Shema, (parent, view) =>
                 {
@@ -144,7 +142,7 @@ namespace PlanHPP.Pages
                 {
                     return Shema.Height * 0.045;    
                 }));
-            RTLT.Children.Add(LargeMark,
+            WorkShopRelativeLayout.Children.Add(LargeMark,
 
                 Constraint.RelativeToView(Shema, (parent, view) =>
                 {
