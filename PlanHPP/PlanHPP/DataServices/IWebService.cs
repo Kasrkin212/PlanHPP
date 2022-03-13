@@ -9,5 +9,6 @@ namespace PlanHPP.DataServices
     public interface IWebService
     {
         Task<List<Motor>> GetDataAsync();
+        Task ChaneMotor(Motor SelectedMotor);
     }
 }

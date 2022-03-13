@@ -172,6 +172,7 @@ namespace PlanHPP.PageModels
             SaveCommentCommand = new Command(() =>
             {
                 SelectedMotor.Comment = Comment;
+                WebService.ChaneMotor(SelectedMotor);
             });
 
             AppearCommand = new Command(() =>
