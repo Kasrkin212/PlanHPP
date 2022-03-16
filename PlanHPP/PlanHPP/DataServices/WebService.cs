@@ -22,12 +22,23 @@ namespace PlanHPP.DataServices
         {
             Motors = new List<Motor>();
             Uri uri = new Uri(string.Format(Constants.RestUrl, string.Empty));
-            HttpResponseMessage response = await client.GetAsync(uri);
-            string content = await response.Content.ReadAsStringAsync();
-            Motors = JsonConvert.DeserializeObject<List<Motor>>(content);
+            
+            try
+            {
+                HttpResponseMessage response = await client.GetAsync(uri);
+                if (response.IsSuccessStatusCode)
+                {
+                    string content = await response.Content.ReadAsStringAsync();
+                    Motors = JsonConvert.DeserializeObject<List<Motor>>(content);
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(@"\tERROR {0}", ex.Message);
+            }
             return Motors;
         }
-        public async Task ChaneMotor(Motor SelectedMotor)
+        public async Task ChangeMotor(Motor SelectedMotor)
         {
             Uri uri = new Uri(string.Format(Constants.RestUrl, string.Empty));
 

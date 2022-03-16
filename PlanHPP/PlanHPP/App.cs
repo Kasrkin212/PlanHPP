@@ -13,7 +13,7 @@ namespace PlanHPP
 		public App()
 		{
 			FreshIOC.Container.Register<IWebService, WebService>();
-			var Page = FreshMvvm.FreshPageModelResolver.ResolvePageModel<WorkShopPageModel>();
+			var Page = FreshMvvm.FreshPageModelResolver.ResolvePageModel<LoginPageModel>();
 			var NavigationPage = new FreshNavigationContainer(Page);
 			MainPage = NavigationPage;
 		}
