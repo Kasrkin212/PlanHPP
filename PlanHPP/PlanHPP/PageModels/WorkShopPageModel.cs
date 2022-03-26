@@ -152,9 +152,9 @@ namespace PlanHPP.PageModels
 
 
 
-        public WorkShopPageModel(IWebService WebService)
+        public WorkShopPageModel(IDataWebService DataWebService)
         {
-            FirstWorkShopView = new WorkShopView(WebService);
+            FirstWorkShopView = new WorkShopView(DataWebService);
             FirstWorkshopGestureContainer.Content = FirstWorkShopView;
 
             GoToTableCommand = new Command(() =>
@@ -164,20 +164,20 @@ namespace PlanHPP.PageModels
             
             RefreshWorkShopPageCommand = new Command(() =>
             {
-                FirstWorkShopView = new WorkShopView(WebService);
+                FirstWorkShopView = new WorkShopView(DataWebService);
                 FirstWorkshopGestureContainer.Content = FirstWorkShopView;
-                AppearVoid(WebService);
+                AppearVoid(DataWebService);
             });
             
             SaveCommentCommand = new Command(() =>
             {
                 SelectedMotor.Comment = Comment;
-                WebService.ChangeMotor(SelectedMotor);
+                DataWebService.ChangeMotor(SelectedMotor);
             });
 
             AppearCommand = new Command(() =>
             {
-                AppearVoid(WebService);
+                AppearVoid(DataWebService);
             });
 
 
@@ -229,9 +229,9 @@ namespace PlanHPP.PageModels
 
             });
         }
-        async public void AppearVoid(IWebService WebService)
+        async public void AppearVoid(IDataWebService DataWebService)
         {
-            motors = await WebService.GetDataAsync();
+            motors = await DataWebService.GetDataAsync();
 
             if (SelectedMotor == null)
             {

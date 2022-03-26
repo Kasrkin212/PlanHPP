@@ -21,15 +21,15 @@ namespace PlanHPP.Views
         public Image LargeMark = new Image();
         Image Shema = new Image();
         
-        public WorkShopView(IWebService WebService)
+        public WorkShopView(IDataWebService DataWebService)
         {
             InitializeComponent();
-            DownloadViews(WebService);
+            DownloadViews(DataWebService);
         }
-        void DownloadViews(IWebService WebService)
+        void DownloadViews(IDataWebService DataWebService)
         {
             MakeMap();
-            MakeImageButton(WebService);
+            MakeImageButton(DataWebService);
         }
         void MakeMap()
         {
@@ -54,7 +54,7 @@ namespace PlanHPP.Views
             })
         );
         }
-        async void MakeImageButton(IWebService WebService)
+        async void MakeImageButton(IDataWebService WebService)
         {
             List<Motor> motors;
             //motors = MotorList.motors;

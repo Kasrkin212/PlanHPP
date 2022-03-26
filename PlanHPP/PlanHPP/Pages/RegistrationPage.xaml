@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:local="clr-namespace:PlanHPP.CustomRenderer" 
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+             x:Class="PlanHPP.Pages.RegistrationPage"
+             NavigationPage.HasNavigationBar="false">
+    <StackLayout BackgroundColor="#e6e6e6">
+        <StackLayout.Background>
+            <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                <GradientStop Color="#DAA520" Offset="0.35"/>
+                <GradientStop Color="#006400" Offset="0.56"/>
+                <GradientStop Color="#556B2F" Offset="0.7"/>
+                <GradientStop Color="#00BFFF" Offset="1"/>
+            </LinearGradientBrush>
+        </StackLayout.Background>
+        <Grid>
+            <StackLayout Padding="0" Margin="0" HorizontalOptions="FillAndExpand">
+                <Frame HeightRequest="350" BackgroundColor="DarkGray" Padding="0" Margin="0">
+                    <Image Source="https://upload.wikimedia.org/wikipedia/commons/8/8e/Yaroslavl_TEC-3.jpg" Aspect="AspectFill" Margin="0"/>
+                </Frame>
+            </StackLayout>
+            <StackLayout Padding="0" Margin="15,20,15,0" HorizontalOptions="FillAndExpand">
+                <Frame  BackgroundColor="White" HeightRequest="700" HasShadow="True" Padding="0" Margin="0" CornerRadius="10">
+
+                    <StackLayout>
+
+
+                        <StackLayout Margin="10">
+                            <Label Text="Регистрация" TextColor="DarkGray" HorizontalOptions="CenterAndExpand" FontAttributes="Bold" FontSize="Large"/>
+                        </StackLayout>
+
+                        <StackLayout Padding="0" Margin="15,10">
+
+                            <Frame BackgroundColor="Transparent" BorderColor="DarkGray" Padding="0" HorizontalOptions="FillAndExpand" CornerRadius="30">
+                                <StackLayout Orientation="Horizontal">
+                                    <Frame BackgroundColor="SkyBlue" HeightRequest="40" WidthRequest="40" CornerRadius="30" Padding="0" Margin="3">
+                                        <Image Source="https://img2.freepng.ru/20180421/yaq/kisspng-electrician-electricity-electrical-engineering-com-electrician-vector-5adab938943d63.7610183715242837046072.jpg" Aspect="AspectFill" Margin="0"/>
+                                    </Frame>
+
+                                    <local:CustomEntry Placeholder="Имя" Text="{Binding Name}" TextColor="SkyBlue" FontAttributes="None" HorizontalOptions="FillAndExpand" Margin="0,0,20,0"/>
+                                </StackLayout>
+                            </Frame>
+
+                            <Frame BackgroundColor="Transparent" BorderColor="DarkGray" Margin="0,15,0,0" Padding="0" HorizontalOptions="FillAndExpand" CornerRadius="30">
+                                <StackLayout Orientation="Horizontal">
+                                    <Frame BackgroundColor="SkyBlue" HeightRequest="40" WidthRequest="40" CornerRadius="30" Padding="0" Margin="3">
+                                        <Image Source="https://img2.freepng.ru/20180421/yaq/kisspng-electrician-electricity-electrical-engineering-com-electrician-vector-5adab938943d63.7610183715242837046072.jpg" Aspect="AspectFill" Margin="0"/>
+                                    </Frame>
+
+                                    <local:CustomEntry Placeholder="Отчество" Text="{Binding Patronymic}" IsPassword="True" TextColor="SkyBlue" FontAttributes="None" HorizontalOptions="FillAndExpand" Margin="0,0,20,0"/>
+                                </StackLayout>
+                            </Frame>
+                            <Frame BackgroundColor="Transparent" BorderColor="DarkGray" Margin="0,15,0,0" Padding="0" HorizontalOptions="FillAndExpand" CornerRadius="30">
+                                <StackLayout Orientation="Horizontal">
+                                    <Frame BackgroundColor="SkyBlue" HeightRequest="40" WidthRequest="40" CornerRadius="30" Padding="0" Margin="3">
+                                        <Image Source="https://img2.freepng.ru/20180421/yaq/kisspng-electrician-electricity-electrical-engineering-com-electrician-vector-5adab938943d63.7610183715242837046072.jpg" Aspect="AspectFill" Margin="0"/>
+                                    </Frame>
+
+                                    <local:CustomEntry Placeholder="Фамилия" Text="{Binding Surname}" IsPassword="True" TextColor="SkyBlue" FontAttributes="None" HorizontalOptions="FillAndExpand" Margin="0,0,20,0"/>
+                                </StackLayout>
+                            </Frame>
+                            <Frame BackgroundColor="Transparent" BorderColor="DarkGray" Margin="0,15,0,0" Padding="0" HorizontalOptions="FillAndExpand" CornerRadius="30">
+                                <StackLayout Orientation="Horizontal">
+                                    <Frame BackgroundColor="SkyBlue" HeightRequest="40" WidthRequest="40" CornerRadius="30" Padding="0" Margin="3">
+                                        <Image Source="https://img2.freepng.ru/20180421/yaq/kisspng-electrician-electricity-electrical-engineering-com-electrician-vector-5adab938943d63.7610183715242837046072.jpg" Aspect="AspectFill" Margin="0"/>
+                                    </Frame>
+
+                                    <local:CustomEntry Placeholder="Занимаемая должность" Text="{Binding Position}" IsPassword="True" TextColor="SkyBlue" FontAttributes="None" HorizontalOptions="FillAndExpand" Margin="0,0,20,0"/>
+                                </StackLayout>
+                            </Frame>
+                            <Frame BackgroundColor="Transparent" BorderColor="DarkGray" Margin="0,15,0,0" Padding="0" HorizontalOptions="FillAndExpand" CornerRadius="30">
+                                <StackLayout Orientation="Horizontal">
+                                    <Frame BackgroundColor="White" HeightRequest="40" WidthRequest="40" CornerRadius="30" Padding="0" Margin="5">
+                                        <Image Source="https://cdn.icon-icons.com/icons2/952/PNG/512/new-email-envelope-marketing-tool-symbol_icon-icons.com_74195.png" Aspect="AspectFill" Margin="3"/>
+                                    </Frame>
+
+                                    <local:CustomEntry Placeholder="Электронная почта" Text="{Binding Email}" IsPassword="True" TextColor="SkyBlue" FontAttributes="None" HorizontalOptions="FillAndExpand" Margin="0,0,20,0"/>
+                                </StackLayout>
+                            </Frame>
+                            <Frame BackgroundColor="Transparent" BorderColor="DarkGray" Margin="0,15,0,0" Padding="0" HorizontalOptions="FillAndExpand" CornerRadius="30">
+                                <StackLayout Orientation="Horizontal">
+                                    <Frame BackgroundColor="SkyBlue" HeightRequest="40" WidthRequest="40" CornerRadius="30" Padding="0" Margin="3">
+                                        <Image Source="https://yaroslavl.technoavia.ru/img/product_images/3069.jpg?sc=model_zoom" Aspect="AspectFill" Margin="0"/>
+                                    </Frame>
+
+                                    <local:CustomEntry Placeholder="Пароль" Text="{Binding Password}" IsPassword="True" TextColor="SkyBlue" FontAttributes="None" HorizontalOptions="FillAndExpand" Margin="0,0,20,0"/>
+                                </StackLayout>
+                            </Frame>
+                            <Frame BackgroundColor="Transparent" BorderColor="DarkGray" Margin="0,15,0,0" Padding="0" HorizontalOptions="FillAndExpand" CornerRadius="30">
+                                <StackLayout Orientation="Horizontal">
+                                    <Frame BackgroundColor="SkyBlue" HeightRequest="40" WidthRequest="40" CornerRadius="30" Padding="0" Margin="3">
+                                        <Image Source="https://yaroslavl.technoavia.ru/img/product_images/3069.jpg?sc=model_zoom" Aspect="AspectFill" Margin="0"/>
+                                    </Frame>
+
+                                    <local:CustomEntry Placeholder="Повторите пароль" Text="{Binding RepeatedPassword}" IsPassword="True" TextColor="SkyBlue" FontAttributes="None" HorizontalOptions="FillAndExpand" Margin="0,0,20,0"/>
+                                </StackLayout>
+                            </Frame>
+
+                            <Button Text="Зарегистрироваться" BackgroundColor="#DAA520" Margin="0,40,0,0"
+                                    TextColor="White" CornerRadius="30" Command="{Binding RegistrationCommand}"/>
+                            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                                <Label Text="Отмена" TextColor="SkyBlue" FontAttributes="Bold" FontSize="Small" Margin="0,30,0,30">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding GoToLoginPageCommand}"/>
+                                    </Label.GestureRecognizers>
+                                </Label>
+                            </StackLayout>
+
+                        </StackLayout>
+
+
+                    </StackLayout>
+
+                </Frame>
+            </StackLayout>
+        </Grid>
+    </StackLayout>
+</ContentPage>

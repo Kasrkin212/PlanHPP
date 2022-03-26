@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace PlanHPP.DataServices
 {
-    public interface IWebService
+    public interface IUserWebService
     {
-        Task<List<Motor>> GetDataAsync();
-        Task ChangeMotor(Motor SelectedMotor);
+        Task<T> LoginUserAsync<T>(string url, T user);
+        Task SendUser(User user);
+
     }
 }

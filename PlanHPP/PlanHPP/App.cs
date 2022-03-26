@@ -12,7 +12,8 @@ namespace PlanHPP
 		public static double ScreenHeight;
 		public App()
 		{
-			FreshIOC.Container.Register<IWebService, WebService>();
+			FreshIOC.Container.Register<IDataWebService, DataWebService>();
+			FreshIOC.Container.Register<IUserWebService, UserWebService>();
 			var Page = FreshMvvm.FreshPageModelResolver.ResolvePageModel<LoginPageModel>();
 			var NavigationPage = new FreshNavigationContainer(Page);
 			MainPage = NavigationPage;

@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using PlanHPP.Models;
+using PlanHPP.Models.Lists;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -9,19 +10,19 @@ using System.Threading.Tasks;
 
 namespace PlanHPP.DataServices
 {
-    public class WebService : IWebService
+    public class DataWebService : IDataWebService
     {
         HttpClient client;
         public List<Motor> Motors { get; private set; }
 
-        public WebService()
+        public DataWebService()
         {
             client = new HttpClient();
         }
         public async Task<List<Motor>> GetDataAsync()
         {
             Motors = new List<Motor>();
-            Uri uri = new Uri(string.Format(Constants.RestUrl, string.Empty));
+            Uri uri = new Uri(string.Format(Constants.DataRestUrl, string.Empty));
             
             try
             {
@@ -37,10 +38,11 @@ namespace PlanHPP.DataServices
                 Debug.WriteLine(@"\tERROR {0}", ex.Message);
             }
             return Motors;
+            //return MotorList.motors;
         }
         public async Task ChangeMotor(Motor SelectedMotor)
         {
-            Uri uri = new Uri(string.Format(Constants.RestUrl, string.Empty));
+            Uri uri = new Uri(string.Format(Constants.DataRestUrl, string.Empty));
 
             try
             {

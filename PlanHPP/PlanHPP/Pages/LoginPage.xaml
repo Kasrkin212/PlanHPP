@@ -3,20 +3,29 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:local="clr-namespace:PlanHPP.CustomRenderer"
+             xmlns:local="clr-namespace:PlanHPP.CustomRenderer" 
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
              mc:Ignorable="d"
              x:Class="PlanHPP.Pages.LoginPage"
              NavigationPage.HasNavigationBar="false">
 
-    <StackLayout BackgroundColor="#e6e6e6">
+    <StackLayout>
+        <StackLayout.Background>
+            <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                <GradientStop Color="#DAA520" Offset="0.35"/>
+                <GradientStop Color="#006400" Offset="0.56"/>
+                <GradientStop Color="#556B2F" Offset="0.7"/>
+                <GradientStop Color="#00BFFF" Offset="1"/>
+            </LinearGradientBrush>
+        </StackLayout.Background>
         <Grid>
             <StackLayout Padding="0" Margin="0" HorizontalOptions="FillAndExpand">
-                <Frame HeightRequest="300" BackgroundColor="HotPink" Padding="0" Margin="0">
+                <Frame HeightRequest="350" BackgroundColor="DarkGray" Padding="0" Margin="0">
                     <Image Source="https://upload.wikimedia.org/wikipedia/commons/8/8e/Yaroslavl_TEC-3.jpg" Aspect="AspectFill" Margin="0"/>
                 </Frame>
             </StackLayout>
-            <StackLayout Padding="0" Margin="0,300,0,0" HorizontalOptions="FillAndExpand">
-                <Frame  BackgroundColor="White" HeightRequest="700" HasShadow="True" Padding="0" Margin="0">
+            <StackLayout Padding="0" Margin="15,300,15,0" HorizontalOptions="FillAndExpand">
+                <Frame  BackgroundColor="White" HeightRequest="320" HasShadow="True" Padding="0" Margin="0" CornerRadius="10">
 
                     <StackLayout>
 
@@ -29,21 +38,21 @@
 
                             <Frame BackgroundColor="Transparent" BorderColor="DarkGray" Padding="0" HorizontalOptions="FillAndExpand" CornerRadius="30">
                                 <StackLayout Orientation="Horizontal">
-                                    <Frame BackgroundColor="SkyBlue" HeightRequest="40" WidthRequest="40" CornerRadius="30" Padding="0" Margin="5">
+                                    <Frame BackgroundColor="SkyBlue" HeightRequest="40" WidthRequest="40" CornerRadius="30" Padding="0" Margin="3">
                                         <Image Source="https://img2.freepng.ru/20180421/yaq/kisspng-electrician-electricity-electrical-engineering-com-electrician-vector-5adab938943d63.7610183715242837046072.jpg" Aspect="AspectFill" Margin="0"/>
                                     </Frame>
 
-                                    <local:CustomEntry Placeholder="Имя" TextColor="SkyBlue" FontAttributes="None" HorizontalOptions="FillAndExpand" Margin="0,0,20,0"/>
+                                    <local:CustomEntry Text="{Binding Name}" Placeholder="Имя" TextColor="SkyBlue" FontAttributes="None" HorizontalOptions="FillAndExpand" Margin="0,0,20,0"/>
                                 </StackLayout>
                             </Frame>
 
                             <Frame BackgroundColor="Transparent" BorderColor="DarkGray" Margin="0,15,0,0" Padding="0" HorizontalOptions="FillAndExpand" CornerRadius="30">
                                 <StackLayout Orientation="Horizontal">
-                                    <Frame BackgroundColor="SkyBlue" HeightRequest="40" WidthRequest="40" CornerRadius="30" Padding="0" Margin="5">
+                                    <Frame BackgroundColor="SkyBlue" HeightRequest="40" WidthRequest="40" CornerRadius="30" Padding="0" Margin="3">
                                         <Image Source="https://yaroslavl.technoavia.ru/img/product_images/3069.jpg?sc=model_zoom" Aspect="AspectFill" Margin="0"/>
                                     </Frame>
 
-                                    <local:CustomEntry Placeholder="Пароль" IsPassword="True" TextColor="SkyBlue" FontAttributes="None" HorizontalOptions="FillAndExpand" Margin="0,0,20,0"/>
+                                    <local:CustomEntry Text="{Binding Password}" Placeholder="Пароль" IsPassword="False" TextColor="SkyBlue" FontAttributes="None" HorizontalOptions="FillAndExpand" Margin="0,0,20,0"/>
                                 </StackLayout>
                             </Frame>
 
@@ -58,7 +67,11 @@
 
                             <Button Text="Войти" BackgroundColor="SkyBlue" TextColor="White" CornerRadius="30" Command="{Binding GoToWorkShopCommand}"/>
                             <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
-                                <Label Text="Зарегистрироваться" TextColor="SkyBlue" FontAttributes="Bold" FontSize="Small"/>
+                                <Label Text="Зарегистрироваться" TextColor="SkyBlue" FontAttributes="Bold" FontSize="Small">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding GoToRegistrationPageCommand}"/>
+                                    </Label.GestureRecognizers>
+                                </Label>
                             </StackLayout>
 
                         </StackLayout>
