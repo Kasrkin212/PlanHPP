@@ -1,8 +1,12 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="PlanHPP.Views.WorkShopView">
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+             x:Class="PlanHPP.Views.WorkShopView" >
+    <ContentView.Behaviors>
+        <xct:EventToCommandBehavior Command="{Binding StopAnimationCommand}" EventName="PropertyChanging"/>
+    </ContentView.Behaviors>
     <ContentView.Content>
-        <RelativeLayout x:Name="WorkShopRelativeLayout" x:FieldModifier="public" WidthRequest="600" HeightRequest="480" class="static"/>
+        <RelativeLayout x:Name="WorkShopRelativeLayout" x:FieldModifier="public" class="static"/>
     </ContentView.Content>
 </ContentView>

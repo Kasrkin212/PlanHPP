@@ -12,6 +12,8 @@ using System.Runtime.CompilerServices;
 using PlanHPP.Gestures;
 using PlanHPP.Views;
 using PlanHPP.DataServices;
+using System.Threading.Tasks;
+using System.Threading;
 
 namespace PlanHPP.PageModels
 {
@@ -20,18 +22,24 @@ namespace PlanHPP.PageModels
     public class WorkShopPageModel : FreshMvvm.FreshBasePageModel
     {
         #region Fields
+        public int stop = 0;
+        public double i = 0;
+        public string _CommentText;
         public string _ViewName;
         public string _ViewSwitch;
-        public string _Comment;
         public int _ViewIndicator = 0;
         public double _XTranslation;
         public double _YTranslation;
+        public double _YAnimation;
         public double _Scale = 0;
         public double DisplayX = (double)DeviceDisplay.MainDisplayInfo.Width / (double)DeviceDisplay.MainDisplayInfo.Density;
         public double DisplayY = (double)DeviceDisplay.MainDisplayInfo.Height / 2 / (double)DeviceDisplay.MainDisplayInfo.Density;
+        public bool _IsAvailableTouchEffect;
         public WorkshopGestureContainer _FirstWorkshopGestureContainer = new WorkshopGestureContainer();
         public WorkShopView FirstWorkShopView;
+        public Comment _Comment = new Comment();
         List<Motor> motors = new List<Motor>();
+
         #endregion
 
         #region Properties
@@ -41,10 +49,13 @@ namespace PlanHPP.PageModels
         public Command GoToTableCommand { set; get; }
         public Command RefreshWorkShopPageCommand { set; get; }
         public Command SaveCommentCommand { set; get; }
-        public Motor SelectedMotor { set; get; }
-
-
+        public Command StopAnimationCommand { set; get; }
         
+        public Motor SelectedMotor { set; get; }
+        
+
+
+
         public string ViewName
         {
             get
@@ -71,7 +82,19 @@ namespace PlanHPP.PageModels
                 RaisePropertyChanged(nameof(ViewSwitch));
             }
         }
-        public string Comment
+        public string CommentText
+        {
+            get 
+            { 
+                return _CommentText; 
+            }
+            set 
+            { 
+                _CommentText = value;
+                RaisePropertyChanged(nameof(CommentText));
+            }
+        }
+        public Comment Comment
         {
             get
             {
@@ -136,6 +159,34 @@ namespace PlanHPP.PageModels
                 RaisePropertyChanged(nameof(Scale));
             }
         }
+        public double YAnimation
+        {
+            get
+            {
+                return _YAnimation;
+            }
+
+            set
+            {
+                _YAnimation = value;
+                RaisePropertyChanged(nameof(YAnimation));
+            }
+        }
+        public bool IsAvailableTouchEffect
+        {
+            get
+            {
+                return _IsAvailableTouchEffect;
+            }
+
+            set
+            {
+                _IsAvailableTouchEffect = value;
+                RaisePropertyChanged(nameof(IsAvailableTouchEffect));
+            }
+        }
+
+        
         public WorkshopGestureContainer FirstWorkshopGestureContainer
         {
             get
@@ -154,8 +205,22 @@ namespace PlanHPP.PageModels
 
         public WorkShopPageModel(IDataWebService DataWebService)
         {
+            Thread myThread3 = new Thread(() => StopAnim());
             FirstWorkShopView = new WorkShopView(DataWebService);
             FirstWorkshopGestureContainer.Content = FirstWorkShopView;
+
+            StopAnimationCommand = new Command( async () =>
+            {
+                if(YAnimation == -App.ScreenHeight * 0.3)
+                {
+                    if(stop == 0)
+                    {
+                        await StopAnimAsync();
+                        stop = 1;
+                    }
+                }
+                
+            });
 
             GoToTableCommand = new Command(() =>
             {
@@ -171,7 +236,8 @@ namespace PlanHPP.PageModels
             
             SaveCommentCommand = new Command(() =>
             {
-                SelectedMotor.Comment = Comment;
+
+                SelectedMotor.Comments.Add(Comment);
                 DataWebService.ChangeMotor(SelectedMotor);
             });
 
@@ -183,6 +249,7 @@ namespace PlanHPP.PageModels
 
             ChangeLableMethod = new Command<string>((key) =>
             {
+                YAnimation = - App.ScreenHeight * 0.3;
                 int Key = Int32.Parse(key);
                 var selectedMotors = from motor in motors
                                      where motor.ID == Key
@@ -193,7 +260,7 @@ namespace PlanHPP.PageModels
                     ViewName = motor.Name;
                     ViewSwitch = motor.Switch;
                     ViewIndicator = motor.Indicator;
-                    Comment = motor.Comment;
+                    //Comment = motor.Comment;
                     SelectedMotor = motor;
 
                     FirstWorkShopView.SmallMark.TranslationX = FirstWorkshopGestureContainer.Width * motor.X;
@@ -226,7 +293,7 @@ namespace PlanHPP.PageModels
 
 
                 }
-
+                stop = 0;
             });
         }
         async public void AppearVoid(IDataWebService DataWebService)
@@ -250,7 +317,7 @@ namespace PlanHPP.PageModels
                     ViewName = motor.Name;
                     ViewSwitch = motor.Switch;
                     ViewIndicator = motor.Indicator;
-                    Comment = motor.Comment;
+                    //Comment = motor.Comment;
                     FirstWorkshopGestureContainer.Content.Scale = 1;
 
 
@@ -323,11 +390,31 @@ namespace PlanHPP.PageModels
 
                 }
             }
-
+            YAnimation = 0;
         }
         public override void ReverseInit(object returnedtdata)
         {
             SelectedMotor = returnedtdata as Motor;
+        }
+        public void StopAnim()
+        {
+            if (YAnimation != 0)
+            {
+                i = - App.ScreenHeight * 0.3;
+                while (i < 0)
+                {
+                    YAnimation = i;
+                    Thread.Sleep(10);
+                    i += 10;
+                }
+                YAnimation = 0;
+            }
+            
+        }
+        public async Task StopAnimAsync()
+        {
+            Task task2 = Task.Factory.StartNew(() => StopAnim());
+            //await Task.Run(() => StopAnim());
         }
 
     }

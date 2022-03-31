@@ -38,7 +38,7 @@
                                         <Image Source="https://img2.freepng.ru/20180421/yaq/kisspng-electrician-electricity-electrical-engineering-com-electrician-vector-5adab938943d63.7610183715242837046072.jpg" Aspect="AspectFill" Margin="0"/>
                                     </Frame>
 
-                                    <local:CustomEntry Placeholder="Имя" Text="{Binding Name}" TextColor="SkyBlue" FontAttributes="None" HorizontalOptions="FillAndExpand" Margin="0,0,20,0"/>
+                                    <local:CustomEntry Placeholder="Имя" Text="{Binding Name}" IsPassword="False" TextColor="SkyBlue" FontAttributes="None" HorizontalOptions="FillAndExpand" Margin="0,0,20,0"/>
                                 </StackLayout>
                             </Frame>
 
@@ -48,7 +48,7 @@
                                         <Image Source="https://img2.freepng.ru/20180421/yaq/kisspng-electrician-electricity-electrical-engineering-com-electrician-vector-5adab938943d63.7610183715242837046072.jpg" Aspect="AspectFill" Margin="0"/>
                                     </Frame>
 
-                                    <local:CustomEntry Placeholder="Отчество" Text="{Binding Patronymic}" IsPassword="True" TextColor="SkyBlue" FontAttributes="None" HorizontalOptions="FillAndExpand" Margin="0,0,20,0"/>
+                                    <local:CustomEntry Placeholder="Отчество" Text="{Binding Patronymic}" IsPassword="False" TextColor="SkyBlue" FontAttributes="None" HorizontalOptions="FillAndExpand" Margin="0,0,20,0"/>
                                 </StackLayout>
                             </Frame>
                             <Frame BackgroundColor="Transparent" BorderColor="DarkGray" Margin="0,15,0,0" Padding="0" HorizontalOptions="FillAndExpand" CornerRadius="30">
@@ -57,7 +57,7 @@
                                         <Image Source="https://img2.freepng.ru/20180421/yaq/kisspng-electrician-electricity-electrical-engineering-com-electrician-vector-5adab938943d63.7610183715242837046072.jpg" Aspect="AspectFill" Margin="0"/>
                                     </Frame>
 
-                                    <local:CustomEntry Placeholder="Фамилия" Text="{Binding Surname}" IsPassword="True" TextColor="SkyBlue" FontAttributes="None" HorizontalOptions="FillAndExpand" Margin="0,0,20,0"/>
+                                    <local:CustomEntry Placeholder="Фамилия" Text="{Binding Surname}" IsPassword="False" TextColor="SkyBlue" FontAttributes="None" HorizontalOptions="FillAndExpand" Margin="0,0,20,0"/>
                                 </StackLayout>
                             </Frame>
                             <Frame BackgroundColor="Transparent" BorderColor="DarkGray" Margin="0,15,0,0" Padding="0" HorizontalOptions="FillAndExpand" CornerRadius="30">
@@ -66,7 +66,7 @@
                                         <Image Source="https://img2.freepng.ru/20180421/yaq/kisspng-electrician-electricity-electrical-engineering-com-electrician-vector-5adab938943d63.7610183715242837046072.jpg" Aspect="AspectFill" Margin="0"/>
                                     </Frame>
 
-                                    <local:CustomEntry Placeholder="Занимаемая должность" Text="{Binding Position}" IsPassword="True" TextColor="SkyBlue" FontAttributes="None" HorizontalOptions="FillAndExpand" Margin="0,0,20,0"/>
+                                    <local:CustomEntry Placeholder="Занимаемая должность" Text="{Binding Position}" IsPassword="False" TextColor="SkyBlue" FontAttributes="None" HorizontalOptions="FillAndExpand" Margin="0,0,20,0"/>
                                 </StackLayout>
                             </Frame>
                             <Frame BackgroundColor="Transparent" BorderColor="DarkGray" Margin="0,15,0,0" Padding="0" HorizontalOptions="FillAndExpand" CornerRadius="30">
@@ -75,7 +75,7 @@
                                         <Image Source="https://cdn.icon-icons.com/icons2/952/PNG/512/new-email-envelope-marketing-tool-symbol_icon-icons.com_74195.png" Aspect="AspectFill" Margin="3"/>
                                     </Frame>
 
-                                    <local:CustomEntry Placeholder="Электронная почта" Text="{Binding Email}" IsPassword="True" TextColor="SkyBlue" FontAttributes="None" HorizontalOptions="FillAndExpand" Margin="0,0,20,0"/>
+                                    <local:CustomEntry Placeholder="Электронная почта" Text="{Binding Email}" IsPassword="False" TextColor="SkyBlue" FontAttributes="None" HorizontalOptions="FillAndExpand" Margin="0,0,20,0"/>
                                 </StackLayout>
                             </Frame>
                             <Frame BackgroundColor="Transparent" BorderColor="DarkGray" Margin="0,15,0,0" Padding="0" HorizontalOptions="FillAndExpand" CornerRadius="30">

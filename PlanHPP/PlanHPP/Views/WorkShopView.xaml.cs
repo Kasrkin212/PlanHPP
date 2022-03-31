@@ -23,6 +23,7 @@ namespace PlanHPP.Views
         
         public WorkShopView(IDataWebService DataWebService)
         {
+            
             InitializeComponent();
             DownloadViews(DataWebService);
         }
@@ -161,6 +162,11 @@ namespace PlanHPP.Views
                 {
                     return Shema.Height * 0.10;   
                 }));
+        }
+
+        private void WorkShopRelativeLayout_PropertyChanging(object sender, PropertyChangingEventArgs e)
+        {
+
         }
     }
 }

@@ -9,6 +9,7 @@ namespace PlanHPP.Gestures
 
     public class WorkshopGestureContainer : ContentView, INotifyPropertyChanged
     {
+        
         private double _startScale, _currentScale;
         private double _startX, _startY;
         private double _xOffset, _yOffset;
@@ -85,7 +86,7 @@ namespace PlanHPP.Gestures
             }
         }
 
-        private void OnPanUpdated(object sender, PanUpdatedEventArgs e)
+        public void OnPanUpdated(object sender, PanUpdatedEventArgs e)
         {
             switch (e.StatusType)
             {
@@ -117,13 +118,13 @@ namespace PlanHPP.Gestures
 
                     if (Content.Scale == 1)
                     {
-                        maxTranslationY = Content.Scale * (Content.Height - App.ScreenHeight / 2);
+                        maxTranslationY = Content.Scale * (Content.Height - App.ScreenHeight * 0.8);
                         Content.TranslationY = Math.Min(0, Math.Max(-maxTranslationY, _yOffset + e.TotalY - _startY));
                     }
 
                     else
                     {
-                        maxTranslationY = Content.Scale * Content.Height - App.ScreenHeight / 2;
+                        maxTranslationY = Content.Scale * Content.Height - App.ScreenHeight * 0.8;
                         Content.TranslationY = Math.Min(0, Math.Max(-maxTranslationY, _yOffset + e.TotalY - _startY));
                     }
 

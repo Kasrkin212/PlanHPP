@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
 
@@ -13,9 +14,13 @@ namespace PlanHPP.Models
         public int Indicator { get; set; }
         public double X { get; set; }
         public double Y { get; set; }
-        public string Comment { get; set; } = "Введите комментарий";
+        public List<Comment> Comments { get; set; }
+        public int DoSwitch { get; set; }
+        public int DoGround { get; set; }
+        public int DodisconnectedCable { get; set; }
 
-        
+
+
     }
 }
 

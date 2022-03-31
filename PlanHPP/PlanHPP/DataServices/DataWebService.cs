@@ -37,8 +37,8 @@ namespace PlanHPP.DataServices
             {
                 Debug.WriteLine(@"\tERROR {0}", ex.Message);
             }
-            return Motors;
-            //return MotorList.motors;
+            //return Motors;
+            return MotorList.motors;
         }
         public async Task ChangeMotor(Motor SelectedMotor)
         {

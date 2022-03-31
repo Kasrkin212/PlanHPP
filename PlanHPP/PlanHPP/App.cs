@@ -14,7 +14,8 @@ namespace PlanHPP
 		{
 			FreshIOC.Container.Register<IDataWebService, DataWebService>();
 			FreshIOC.Container.Register<IUserWebService, UserWebService>();
-			var Page = FreshMvvm.FreshPageModelResolver.ResolvePageModel<LoginPageModel>();
+			//var Page = FreshMvvm.FreshPageModelResolver.ResolvePageModel<LoginPageModel>();
+			var Page = FreshMvvm.FreshPageModelResolver.ResolvePageModel<WorkShopPageModel>();
 			var NavigationPage = new FreshNavigationContainer(Page);
 			MainPage = NavigationPage;
 		}

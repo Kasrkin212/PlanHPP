@@ -52,15 +52,14 @@ namespace PlanHPP.PageModels
                 {
                     Name = Name,
                     Password = Password,
-                    Email = "q",
-                    Patronymic = "q",
-                    Position = "q",
-                    Surname = "q",
+                    Email = "",
+                    Patronymic = "",
+                    Position = "",
+                    Surname = "",
                     ID = 10
                 };
                 //CoreMethods.PushPageModel<WorkShopPageModel>();
                 RecivedUser = await UserWebService.LoginUserAsync(Constants.UserAuthicationRestUrl, user);
-                Name = RecivedUser.Name;
                 if (Password == RecivedUser.Password)
                 {
                     

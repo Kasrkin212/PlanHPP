@@ -7,74 +7,53 @@
              x:FieldModifier="public"
              NavigationPage.HasNavigationBar="false">
 
-    
+
     <ContentPage.Behaviors>
-        <xct:EventToCommandBehavior Command="{Binding AppearCommand}" EventName="Appearing" />
+        <xct:EventToCommandBehavior Command="{Binding AppearCommand}" EventName="Appearing"/>
     </ContentPage.Behaviors>
 
-    <RelativeLayout x:Name="WorkShopRelativeLayout">
-        
-        <RelativeLayout x:Name="FirstWorkShopView" x:FieldModifier="public" WidthRequest="600" HeightRequest="480">
-            <local1:WorkshopGestureContainer Content="{Binding FirstWorkshopGestureContainer}"/>
-        </RelativeLayout>
-            
 
-        <Frame  x:Name="BigFrame" 
-            BorderColor="Blue" BackgroundColor="#ADD8E6" HorizontalOptions ="Fill" VerticalOptions="Fill" 
-            RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}"
-            RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.5}"
-            RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.0}"
-            RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.5}">
+
+    <RelativeLayout x:Name="WorkShopRelativeLayout">
+        <Grid WidthRequest="780" HeightRequest="624" HorizontalOptions ="StartAndExpand" VerticalOptions="StartAndExpand">
+            <local1:WorkshopGestureContainer Content="{Binding FirstWorkshopGestureContainer}"/>
+            <StackLayout Orientation="Vertical" HorizontalOptions ="Start" VerticalOptions="Start">
+                <Button x:Name="ToTableButton" Text="Таблица" 
+                    RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=X, Factor= 1}"
+                    RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Y, Constant= 5, Factor= 1}"
+                    Command="{Binding GoToTableCommand}"/>
+                <Button x:Name="RefreshWorkShopPageButton" Text="Обновить" 
+                    RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=X, Constant= 100, Factor= 1.8}"
+                    RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Y, Constant= 5, Factor= 1}"
+                    Command="{Binding RefreshWorkShopPageCommand}"/>
+            </StackLayout>
+        </Grid>
+        <Frame  x:Name="BigFrame" CornerRadius="0" TranslationY="{Binding YAnimation}"
+                    BorderColor="Gray" BackgroundColor="SkyBlue" HorizontalOptions ="Fill" VerticalOptions="Fill" 
+                    RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}"
+                    RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.5}"
+                    RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.0}"
+                    RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.8}">
+            <StackLayout>
+                <Label x:Name="LableName" TextColor="#000000" Font="26" Text="{Binding ViewName}"/>
+                <BoxView Color="Gray"  HeightRequest="2" HorizontalOptions="Fill" />
+                <Label x:Name="LableSwitch" TextColor="#000000" Font="26" Text="{Binding ViewSwitch}"/>
+                <BoxView Color="Gray"  HeightRequest="2" HorizontalOptions="Fill" />
+                <Image x:Name="Indicator" Source="powerbox.jpg" Scale="{Binding ViewIndicator}" HorizontalOptions="Start" WidthRequest="50" HeightRequest="50"/>
+                <Label x:Name="CommentLable" TextColor="#000000" Font="26" Text="Комментарий:"
+                    RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToView, ElementName=FrameSwitch, Property=Width}"
+                    RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToView, ElementName=FrameSwitch, Property=Height}"/>
+                <Editor x:Name="EditorComment" x:FieldModifier="public" Text="{Binding CommentText}"
+                    RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToView, ElementName=FrameSwitch, Property=Width}"
+                    RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToView, ElementName=FrameSwitch, Property=Height}">
+                </Editor>
+                
+                <Button x:Name="CommentButton" x:FieldModifier="public" Text="Сохранить"
+                    Command="{Binding SaveCommentCommand}"/>
+            </StackLayout>
+            
         </Frame>
-        <Frame x:Name="FrameName" BackgroundColor="#ADD8E6" BorderColor="Blue"
-            RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToView, ElementName = BigFrame, Property=X}"
-            RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView, ElementName = BigFrame, Property=Y}"
-            RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToView, ElementName = BigFrame, Property=Width}"
-            RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToView, ElementName = BigFrame, Property=Height, Factor=0.1}"
-               />
-        <Frame x:Name="FrameSwitch" BackgroundColor="#ADD8E6" BorderColor="Blue"
-            RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToView, ElementName = BigFrame, Property=X}"
-            RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView, ElementName = BigFrame, Property=Y, Factor= 1.1}"
-            RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToView, ElementName = BigFrame, Property=Width}"
-            RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToView, ElementName = BigFrame, Property=Height, Factor=0.1}"
-               />
-        <Label x:Name="LableName" x:FieldModifier="public" Font="26" Text="{Binding ViewName}" 
-            RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToView, ElementName=FrameName, Property=X, Constant=1}"
-            RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView, ElementName=FrameName, Property=Y, Constant=2}"
-            RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToView, ElementName=FrameName, Property=Width}"
-            RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToView, ElementName=FrameName, Property=Height}"/>
-        <Label x:Name="LableSwitch" x:FieldModifier="public" Font="26" Text="{Binding ViewSwitch}"
-            RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToView, ElementName=FrameSwitch, Property=X}"
-            RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView, ElementName=BigFrame, Property=Y, Factor= 1.1}"
-            RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToView, ElementName=FrameSwitch, Property=Width}"
-            RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToView, ElementName=FrameSwitch, Property=Height}"/>
-        <Label x:Name="CommentLable" x:FieldModifier="public" Font="26" Text="Комментарий:"
-            RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToView, ElementName=FrameSwitch, Property=X}"
-            RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView, ElementName=BigFrame, Property=Y, Factor= 1.4}"
-            RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToView, ElementName=FrameSwitch, Property=Width}"
-            RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToView, ElementName=FrameSwitch, Property=Height}"/>
-        <Editor x:Name="EditorComment" x:FieldModifier="public" Text="{Binding Comment}"
-            RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToView, ElementName=FrameSwitch, Property=X}"
-            RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView, ElementName=BigFrame, Property=Y, Factor= 1.5}"
-            RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToView, ElementName=FrameSwitch, Property=Width}"
-            RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToView, ElementName=FrameSwitch, Property=Height}"/>
-        <Button x:Name="CommentButton" x:FieldModifier="public" Text="Сохранить"
-            RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToView, ElementName=FrameSwitch, Property=X}"
-            RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView, ElementName=BigFrame, Property=Y, Factor= 1.7}"
-            Command="{Binding SaveCommentCommand}"/>
-        <Image x:Name="Indicator" x:FieldModifier="public"  Source="powerbox.jpg" Scale="{Binding ViewIndicator}"
-            RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=X, Factor= 1}"
-            RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView, ElementName=BigFrame, Property=Y, Factor= 1.2}"
-            RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToView, ElementName=BigFrame, Property=Width, Factor= 0.2}"
-            RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToView, ElementName=BigFrame, Property=Height, Factor= 0.2}"/>
-        <Button x:Name="ToTableButton" Text="Таблица" 
-            RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=X, Factor= 1}"
-            RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Y, Constant= 5, Factor= 1}"
-            Command="{Binding GoToTableCommand}"/>
-        <Button x:Name="RefreshWorkShopPageButton" Text="Обновить" 
-            RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=X, Constant= 100, Factor= 1.8}"
-            RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Y, Constant= 5, Factor= 1}"
-            Command="{Binding RefreshWorkShopPageCommand}"/>
+            
     </RelativeLayout>
 
 </ContentPage>
