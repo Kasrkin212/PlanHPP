@@ -237,8 +237,8 @@ namespace PlanHPP.PageModels
             SaveCommentCommand = new Command(() =>
             {
 
-                SelectedMotor.Comments.Add(Comment);
-                DataWebService.ChangeMotor(SelectedMotor);
+                //SelectedMotor.Comments.Add(Comment);
+                //DataWebService.ChangeMotor(SelectedMotor);
             });
 
             AppearCommand = new Command(() =>
@@ -263,14 +263,14 @@ namespace PlanHPP.PageModels
                     //Comment = motor.Comment;
                     SelectedMotor = motor;
 
-                    FirstWorkShopView.SmallMark.TranslationX = FirstWorkshopGestureContainer.Width * motor.X;
-                    FirstWorkShopView.SmallMark.TranslationY = FirstWorkshopGestureContainer.Height * motor.Y;
+                    FirstWorkShopView.SmallMark.TranslationX = FirstWorkShopView.Shema.Width * motor.X;
+                    FirstWorkShopView.SmallMark.TranslationY = FirstWorkShopView.Shema.Height * motor.Y;
 
-                    FirstWorkShopView.MiddleMark.TranslationX = FirstWorkshopGestureContainer.Width * motor.X;
-                    FirstWorkShopView.MiddleMark.TranslationY = FirstWorkshopGestureContainer.Height * motor.Y;
+                    FirstWorkShopView.MiddleMark.TranslationX = FirstWorkShopView.Shema.Width * motor.X;
+                    FirstWorkShopView.MiddleMark.TranslationY = FirstWorkShopView.Shema.Height * motor.Y;
 
-                    FirstWorkShopView.LargeMark.TranslationX = FirstWorkshopGestureContainer.Width * motor.X;
-                    FirstWorkShopView.LargeMark.TranslationY = FirstWorkshopGestureContainer.Height * motor.Y;
+                    FirstWorkShopView.LargeMark.TranslationX = FirstWorkShopView.Shema.Width * motor.X;
+                    FirstWorkShopView.LargeMark.TranslationY = FirstWorkShopView.Shema.Height * motor.Y;
                   
                     if (motor.ID == 3)
                     {
@@ -413,8 +413,8 @@ namespace PlanHPP.PageModels
         }
         public async Task StopAnimAsync()
         {
-            Task task2 = Task.Factory.StartNew(() => StopAnim());
-            //await Task.Run(() => StopAnim());
+            Task task = Task.Factory.StartNew(() => StopAnim());
+            
         }
 
     }

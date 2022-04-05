@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="PlanHPP.Views.Marks.MiddleMotorButtonMark">
   <ContentView.Content>
-        <Image x:Name="MiddleMark" x:FieldModifier="public" Source="CirkNasosPressed.jpg"
+        <Image x:Name="MiddleMark" x:FieldModifier="public" Source="CirkNasosPressed.jpg" InputTransparent="True"
                  RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToView, ElementName=ShemaToTGOne, Property=Width, Factor=0.04}"
                  RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToView, ElementName=ShemaToTGOne, Property=Height, Factor=0.045}"            
                  Scale="0"/>

@@ -10,6 +10,7 @@ using PlanHPP.Views.Motors;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using PlanHPP.DataServices;
+using System.Threading;
 
 namespace PlanHPP.Views
 {
@@ -19,11 +20,17 @@ namespace PlanHPP.Views
         public Image SmallMark = new Image();
         public Image MiddleMark = new Image();
         public Image LargeMark = new Image();
-        Image Shema = new Image();
+        public Image Shema = new Image();
+        public List<Motor> motors;
         
+        //public List<Rect> Rects;
+        //public Rect CurrentRect;
+        //TestLabel testLabel = new TestLabel();
+        //object __lockObj = new Object();
+
         public WorkShopView(IDataWebService DataWebService)
         {
-            
+            //Rects = new List<Rect>();
             InitializeComponent();
             DownloadViews(DataWebService);
         }
@@ -57,19 +64,19 @@ namespace PlanHPP.Views
         }
         async void MakeImageButton(IDataWebService WebService)
         {
-            List<Motor> motors;
+            
             //motors = MotorList.motors;
             motors = await WebService.GetDataAsync();
 
-            var selectedMotors = from motor in motors
-                                 select motor;
-            foreach (Motor motor in selectedMotors)
+            foreach (Motor motor in motors)
             {
-
                 SmallMotorButton ImageIndicator = new SmallMotorButton();
                 ImageButton SmallMotor = ImageIndicator.SmallMotor;
                 SmallMotor.CommandParameter = Convert.ToString(motor.ID);
 
+                Label NameLabel = new Label();
+                NameLabel.Text = motor.Name;
+                
 
                 WorkShopRelativeLayout.Children.Add(SmallMotor,
 
@@ -90,6 +97,32 @@ namespace PlanHPP.Views
                 {
                     return Shema.Height * 0.045;  
                 }));
+                
+                
+                
+                //testLabel.X = Shema.X + Shema.Width * motor.X;
+                //testLabel.Y = Shema.Y + Shema.Height * motor.Y + SmallMotor.Height;
+                //
+                //
+                //CurrentRect = new Rect(testLabel.X, testLabel.Y, NameLabel.Width, NameLabel.Height);
+                //
+                //Thread myThread3 = new Thread(() => MakeNameLabelPosition(Rects, NameLabel, CurrentRect));
+                //myThread3.Start();
+                //Rects.Add(CurrentRect);
+                //
+                //
+                //WorkShopRelativeLayout.Children.Add(NameLabel,
+                //
+                //Constraint.RelativeToView(Shema, (parent, view) =>
+                //{
+                //    return CurrentRect.X;
+                //}),
+                //
+                //Constraint.RelativeToView(Shema, (parent, view) =>
+                //{
+                //    return CurrentRect.Y;
+                //}));
+
             }
             MakeMark();
 
@@ -163,6 +196,62 @@ namespace PlanHPP.Views
                     return Shema.Height * 0.10;   
                 }));
         }
+        //void MakeNameLabelPosition(List<Rect> Rects, Label name, Rect CurrentRect)
+        //{
+        //    lock (__lockObj)
+        //    {
+        //        Console.WriteLine("CurrentRectX:" + CurrentRect.X);
+        //        Console.WriteLine("CurrentRectY:" + CurrentRect.Y);
+        //        Console.WriteLine("NameLabelX:" + testLabel.X);
+        //        Console.WriteLine("NameLabelY:" + testLabel.Y);
+        //
+        //        if (Rects.Count != 0)
+        //        {
+        //            foreach (Rect Oldrect in Rects)
+        //            {
+        //
+        //                if (Oldrect.IntersectsWith(CurrentRect))
+        //                {
+        //
+        //                    if (Oldrect.X < CurrentRect.X)
+        //                    {
+        //                        testLabel.X += Oldrect.Width;
+        //                    }
+        //                    else if (Oldrect.X > CurrentRect.X)
+        //                    {
+        //                        testLabel.X -= Oldrect.Width;
+        //                    }
+        //
+        //                    if (Oldrect.Y < CurrentRect.Y)
+        //                    {
+        //                        testLabel.Y += Oldrect.Height;
+        //                    }
+        //                    else if (Oldrect.Y > CurrentRect.Y)
+        //                    {
+        //                        testLabel.Y -= Oldrect.Height;
+        //                    }
+        //                    CurrentRect = new Rect(testLabel.X, testLabel.Y, name.Width, name.Height);
+        //
+        //                    Console.WriteLine("NameLabelName:" + name.Text);
+        //                    Console.WriteLine("NameLabelX:" + testLabel.X);
+        //                    Console.WriteLine("NameLabelY:" + testLabel.Y);
+        //                    Console.WriteLine("CurrentRectX:" + CurrentRect.X);
+        //                    Console.WriteLine("CurrentRectY:" + CurrentRect.Y);
+        //                    MakeNameLabelPosition(Rects, name, CurrentRect);
+        //
+        //
+        //                }
+        //                else
+        //                {
+        //                    Console.WriteLine("Готов:" + name.Text);
+        //                }
+        //
+        //            }
+        //        }
+        //    }
+        //    
+        //
+        //}
 
         private void WorkShopRelativeLayout_PropertyChanging(object sender, PropertyChangingEventArgs e)
         {

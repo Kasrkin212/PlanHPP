@@ -7,6 +7,6 @@
         <xct:EventToCommandBehavior Command="{Binding StopAnimationCommand}" EventName="PropertyChanging"/>
     </ContentView.Behaviors>
     <ContentView.Content>
-        <RelativeLayout x:Name="WorkShopRelativeLayout" x:FieldModifier="public" class="static"/>
+        <RelativeLayout x:Name="WorkShopRelativeLayout" x:FieldModifier="public" class="static" Margin="50,50,50,50"/>
     </ContentView.Content>
 </ContentView>

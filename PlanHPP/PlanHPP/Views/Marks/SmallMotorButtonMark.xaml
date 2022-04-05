@@ -3,6 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="PlanHPP.Views.Marks.SmallMotorButtonMark">
   <ContentView.Content>
-        <Image x:Name="SmallMark" x:FieldModifier="public" Source="ElectroMotorPressed.jpg" Scale="0"/>
+        <Image x:Name="SmallMark" x:FieldModifier="public" Source="ElectroMotorPressed.jpg" Scale="0" InputTransparent="True"/>
     </ContentView.Content>
 </ContentView>

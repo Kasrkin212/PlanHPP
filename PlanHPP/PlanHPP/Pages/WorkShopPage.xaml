@@ -17,7 +17,7 @@
     <RelativeLayout x:Name="WorkShopRelativeLayout">
         <Grid WidthRequest="780" HeightRequest="624" HorizontalOptions ="StartAndExpand" VerticalOptions="StartAndExpand">
             <local1:WorkshopGestureContainer Content="{Binding FirstWorkshopGestureContainer}"/>
-            <StackLayout Orientation="Vertical" HorizontalOptions ="Start" VerticalOptions="Start">
+            <StackLayout Orientation="Horizontal" HorizontalOptions ="Start" VerticalOptions="Start">
                 <Button x:Name="ToTableButton" Text="Таблица" 
                     RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=X, Factor= 1}"
                     RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Y, Constant= 5, Factor= 1}"
